@@ -31,7 +31,7 @@ export default function Banner() {
         fontWeight="700"
         lineHeight={{ base: '32px', md: '42px' }}
       >
-        Discover, collect, and sell extraordinary NFTs
+        Utilize & Build Web3 Functions and get awarded
       </Text>
       <Text
         fontSize="md"
@@ -48,8 +48,7 @@ export default function Banner() {
         mb="40px"
         lineHeight="28px"
       >
-        Enter in this creative world. Discover now the latest NFTs or start
-        creating your own!
+        Best decentrailied Digi solutions - Access basic and standard functions for free and earn token. 
       </Text>
       <Flex align="center">
         <Button

@@ -53,7 +53,7 @@ export default function TopCreatorTable(props: { tableData: RowObj[] }) {
           fontSize={{ sm: '10px', lg: '12px' }}
           color="gray.400"
         >
-          NAME
+          Wallet
         </Text>
       ),
       cell: (info: any) => (
@@ -74,7 +74,7 @@ export default function TopCreatorTable(props: { tableData: RowObj[] }) {
           fontSize={{ sm: '10px', lg: '12px' }}
           color="gray.400"
         >
-          ARTWORKS
+          Token Awarded
         </Text>
       ),
       cell: (info) => (

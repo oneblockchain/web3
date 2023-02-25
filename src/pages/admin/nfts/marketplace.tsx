@@ -86,7 +86,7 @@ export default function Marketplace() {
                   ms="24px"
                   fontWeight="700"
                 >
-                  Trending NFTs
+                  Trending dFuns
                 </Text>
                 <Flex
                   align="center"
@@ -100,7 +100,7 @@ export default function Marketplace() {
                     me={{ base: '34px', md: '44px' }}
                     href="#art"
                   >
-                    Art
+                    Personal Finance
                   </Link>
                   <Link
                     color={textColorBrand}
@@ -108,7 +108,7 @@ export default function Marketplace() {
                     me={{ base: '34px', md: '44px' }}
                     href="#music"
                   >
-                    Music
+                    AI
                   </Link>
                   <Link
                     color={textColorBrand}
@@ -116,16 +116,16 @@ export default function Marketplace() {
                     me={{ base: '34px', md: '44px' }}
                     href="#collectibles"
                   >
-                    Collectibles
+                    Useful Tooks
                   </Link>
                   <Link color={textColorBrand} fontWeight="500" href="#sports">
-                    Sports
+                    Small Business
                   </Link>
                 </Flex>
               </Flex>
               <SimpleGrid columns={{ base: 1, md: 3 }} gap="20px">
                 <NFT
-                  name="Abstract Colors"
+                  name="CPF Contribution Calulator"
                   author="By Esthera Jackson"
                   bidders={[
                     Avatar1,
@@ -138,11 +138,11 @@ export default function Marketplace() {
                     Avatar1,
                   ]}
                   image={Nft1}
-                  currentbid="0.91 ETH"
+                  currentbid="2000"
                   download="#"
                 />
                 <NFT
-                  name="ETH AI Brain"
+                  name="Income Tax Estimator"
                   author="By Nick Wilson"
                   bidders={[
                     Avatar1,
@@ -155,11 +155,11 @@ export default function Marketplace() {
                     Avatar1,
                   ]}
                   image={Nft2}
-                  currentbid="0.91 ETH"
-                  download="#"
+                  currentbid="1786"
+                  download="https://sgtax.mainframe2cloud.com/"
                 />
                 <NFT
-                  name="Mesh Gradients "
+                  name="Compare Job Offer"
                   author="By Will Smith"
                   bidders={[
                     Avatar1,
@@ -172,7 +172,7 @@ export default function Marketplace() {
                     Avatar1,
                   ]}
                   image={Nft3}
-                  currentbid="0.91 ETH"
+                  currentbid="200"
                   download="#"
                 />
               </SimpleGrid>
@@ -205,7 +205,7 @@ export default function Marketplace() {
                     Avatar1,
                   ]}
                   image={Nft4}
-                  currentbid="0.91 ETH"
+                  currentbid="88"
                   download="#"
                 />
                 <NFT
@@ -222,7 +222,7 @@ export default function Marketplace() {
                     Avatar1,
                   ]}
                   image={Nft5}
-                  currentbid="0.91 ETH"
+                  currentbid="77"
                   download="#"
                 />
                 <NFT
@@ -239,7 +239,7 @@ export default function Marketplace() {
                     Avatar1,
                   ]}
                   image={Nft6}
-                  currentbid="0.91 ETH"
+                  currentbid="66"
                   download="#"
                 />
               </SimpleGrid>

@@ -12,36 +12,31 @@ import { IRoute } from 'types/navigation';
 const routes: IRoute[] = [
   // --- Dashboards ---
   {
-    name: 'Dashboards',
-    path: '/dashboards',
-    icon: <Icon as={MdHome} width="20px" height="20px" color="inherit" />,
-    collapse: true,
-    items: [
-      {
-        name: 'Main Dashboard',
-        layout: '/admin',
-        path: '/dashboards/default',
-      },
-      {
-        name: 'Car Interface',
-        layout: '/admin',
-        path: '/dashboards/car-interface',
-      },
-      {
-        name: 'Smart Home',
-        layout: '/admin',
-        path: '/dashboards/smart-home',
-      },
-      {
-        name: 'RTL',
-        layout: '/rtl',
-        path: '/dashboards/rtl',
-      },
-    ],
+    name: 'Home',
+    layout: '/admin',
+    path: '/dashboards/default',
+    icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
+    component: MdDashboard
   },
-  // // --- NFTs ---
+  // // --- dFuns ---
   {
-    name: 'NFTs',
+    name: 'dFuns Marketplace',
+    layout: '/admin',
+    path: '/nfts/marketplace',
+    icon: (
+      <Icon
+        as={MdOutlineShoppingCart}
+        width='20px'
+        height='20px'
+        color='inherit'
+      />
+    ),
+    component: MdOutlineShoppingCart
+    ,
+    secondary: true
+  },
+  /* {
+    name: 'dFuns',
     path: '/nfts',
     icon: (
       <Icon
@@ -60,17 +55,17 @@ const routes: IRoute[] = [
         secondary: true,
       },
       {
-        name: 'Collection',
+        name: 'Developer Portal',
         layout: '/admin',
         path: '/nfts/collection',
         secondary: true,
       },
-      {
+       {
         name: 'NFT Page',
         layout: '/admin',
         path: '/nfts/page',
         secondary: true,
-      },
+      }, 
       {
         name: 'Profile',
         layout: '/admin',
@@ -78,8 +73,8 @@ const routes: IRoute[] = [
         secondary: true,
       },
     ],
-  },
-  // // --- Main pages ---
+  }, */
+/*   // // --- Main pages ---
   {
     name: 'Main Pages',
     path: '/main',
@@ -372,7 +367,7 @@ const routes: IRoute[] = [
         ],
       },
     ],
-  },
+  }, */
 ];
 
 export default routes;
