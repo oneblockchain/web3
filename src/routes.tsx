@@ -16,29 +16,47 @@ import { IRoute } from 'types/navigation';
 const routes: IRoute[] = [
   // --- Dashboards ---
   {
-    name: 'Home',
+    name: 'dFuns Marketplace',
     layout: '/admin',
     path: '/nfts/marketplace',
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: MdDashboard
   },
-  // // --- dFuns ---
+  // --- dFuns ---
   {
-    name: 'dFuns Marketplace',
-    layout: '/admin',
-    path: '/nfts/marketplace',
+    name: 'dFunctions',
+    path: '/nfts',
     icon: (
       <Icon
-        as={MdOutlineShoppingCart}
-        width='20px'
-        height='20px'
-        color='inherit'
+        as={MdCode}
+        width="20px"
+        height="20px"
+        color="inherit"
       />
     ),
-    component: MdOutlineShoppingCart
-    ,
-    secondary: true
+    collapse: true,
+    items: [
+      {
+        name: 'CPFCal',
+        layout: '/admin',
+        path: '/dfuns/cpfcal',
+        secondary: true,
+      },
+      {
+        name: 'SGTax',
+        layout: '/admin',
+        path: '/dfuns/cpfcal',
+        secondary: true,
+      },
+      {
+        name: 'OfferC',
+        layout: '/admin',
+        path: '/dfuns/offerc',
+        secondary: true,
+      },
+    ],
   },
+// Dev Portal
   {
     name: 'Developer Portal',
     path: '/nfts',

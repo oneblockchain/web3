@@ -222,52 +222,31 @@ export default function Marketplace() {
               py="18px"
             >
               <Text color={textColor} fontSize="xl" fontWeight="600">
-                History
+                Premium Function Paid
               </Text>
               <Button variant="action">See all</Button>
             </Flex>
 
             <HistoryItem
-              name="Colorful Heaven1"
-              author="By Mark Benjamin"
+              name="CPF Contribution Calulator"
+              author="By The One"
               date="30s ago"
               image={Nft5}
-              price="0.91 ETH"
+              price="2 Token"
             />
             <HistoryItem
-              name="Abstract Colors"
-              author="By Esthera Jackson"
+              name="Income Tax Estimator"
+              author="By The One"
               date="58s ago"
               image={Nft1}
-              price="0.91 ETH"
+              price="3 Token"
             />
             <HistoryItem
-              name="ETH AI Brain"
-              author="By Nick Wilson"
+              name="Compare Job Offer"
+              author="By The One"
               date="1m ago"
               image={Nft2}
-              price="0.91 ETH"
-            />
-            <HistoryItem
-              name="Swipe Circles"
-              author="By Peter Will"
-              date="1m ago"
-              image={Nft4}
-              price="0.91 ETH"
-            />
-            <HistoryItem
-              name="Mesh Gradients "
-              author="By Will Smith"
-              date="2m ago"
-              image={Nft3}
-              price="0.91 ETH"
-            />
-            <HistoryItem
-              name="3D Cubes Art"
-              author="By Manny Gates"
-              date="3m ago"
-              image={Nft6}
-              price="0.91 ETH"
+              price="5 Token"
             />
           </Card>
         </Flex>
