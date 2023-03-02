@@ -136,7 +136,7 @@ const Connected: FC = () => {
         <Heading
           color="black"
           as="h3"
-          size="2xl"
+          size="xl"
           noOfLines={3}
           textAlign="center"
         >
