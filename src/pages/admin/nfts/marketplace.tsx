@@ -192,7 +192,7 @@ export default function Marketplace() {
                 mb={{ base: '20px', xl: '0px' }}
               >
                 <NFT
-                  name="Swipe Circles"
+                  name="SG Property Tax"
                   author="By Peter Will"
                   bidders={[
                     Avatar1,
@@ -209,7 +209,7 @@ export default function Marketplace() {
                   download="#"
                 />
                 <NFT
-                  name="Colorful Heaven"
+                  name="SRS or CPF Topup"
                   author="By Mark Benjamin"
                   bidders={[
                     Avatar1,
@@ -226,7 +226,7 @@ export default function Marketplace() {
                   download="#"
                 />
                 <NFT
-                  name="3D Cubes Art"
+                  name="URL2QR"
                   author="By Manny Gates"
                   bidders={[
                     Avatar1,
