@@ -42,7 +42,7 @@ export function SearchBar(props: {
       </InputLeftElement>
 
       <Input
-        variant="search"
+        variant="search1"
         fontSize="sm"
         bg={background ? background : inputBg}
         color={inputText}

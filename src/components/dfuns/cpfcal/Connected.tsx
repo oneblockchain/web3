@@ -168,7 +168,7 @@ const Connected: FC = () => {
     </Button>
         </VStack>
         {cpfContributions && (
-          <VStack width="100%" maxW="600px" spacing={1} color="blace">
+          <VStack width="100%" maxW="600px" spacing={1} color="black">
             <Text>Monthly CPF by your employer: ${cpfContributions.cpf_emp.toFixed(2)}</Text>
             <Text>Monthly CPF by yourself: ${cpfContributions.cpf_self.toFixed(2)}</Text>
             <Text>Monthly CPF total: ${cpfContributions.cpf_tot.toFixed(2)}</Text>

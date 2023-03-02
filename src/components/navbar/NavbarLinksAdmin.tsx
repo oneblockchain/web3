@@ -20,6 +20,12 @@ import { Image } from 'components/image/Image';
 import { ItemContent } from 'components/menu/ItemContent';
 import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 import { SidebarResponsive } from 'components/sidebar/Sidebar';
+//wallet
+import { HStack, Spacer } from "@chakra-ui/react"
+import { FC } from "react"
+import styles from "styles/Home.module.css";
+import dynamic from "next/dynamic";
+import NavBar from "components/dfuns/NavBar";
 // Assets
 import navImage from '/public/img/layout/Navbar.png'; 
 import { FaEthereum } from 'react-icons/fa';
@@ -42,8 +48,16 @@ export default function HeaderLinks(props: { secondary: boolean }) {
     '14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
     '14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
   );
+
+//wallet
+const WalletMultiButtonDynamic = dynamic(
+	async () =>
+		(await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
+	{ ssr: false }
+);
+
   const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
-  return (
+  return (   
     <Flex
       w={{ sm: '100%', md: 'auto' }}
       alignItems="center"
@@ -64,7 +78,8 @@ export default function HeaderLinks(props: { secondary: boolean }) {
         me="10px"
         borderRadius="30px"
       />
-      <Flex
+           
+ {/*      <Flex
         bg={ethBg}
         display={secondary ? 'flex' : 'none'}
         borderRadius="30px"
@@ -84,20 +99,21 @@ export default function HeaderLinks(props: { secondary: boolean }) {
         >
           <Icon color={ethColor} w="9px" h="14px" as={FaEthereum} />
         </Flex>
-        <Text
+         <Text
           w="max-content"
           color={ethColor}
           fontSize="sm"
           fontWeight="700"
           me="6px"
         >
-          1,924
+          1,111
           <Text as="span" display={{ base: 'none', md: 'unset' }}>
             {' '}
-            ETH
+            WOW
           </Text>
-        </Text>
-      </Flex>
+        </Text> 
+      </Flex> */}
+
       <SidebarResponsive routes={routes} />
       <Menu>
         <MenuButton p="0px">
@@ -250,10 +266,11 @@ export default function HeaderLinks(props: { secondary: boolean }) {
           />
           <Center top={0} left={0} position={'absolute'} w={'100%'} h={'100%'}>
             <Text fontSize={'xs'} fontWeight="bold" color={'white'}>
-              AP
+              Profile
             </Text>
           </Center>
         </MenuButton>
+
         <MenuList
           boxShadow={shadow}
           p="0px"
@@ -305,6 +322,8 @@ export default function HeaderLinks(props: { secondary: boolean }) {
             </MenuItem>
           </Flex>
         </MenuList>
+    {/* wallet button  */}
+        <NavBar/> 
       </Menu>
     </Flex>
   );

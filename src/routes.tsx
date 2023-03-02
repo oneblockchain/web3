@@ -25,7 +25,7 @@ const routes: IRoute[] = [
   // --- dFuns ---
   {
     name: 'dFunctions',
-    path: '/nfts',
+    path: '/dfuns',
     icon: (
       <Icon
         as={MdOutlineShoppingCart}
@@ -38,20 +38,20 @@ const routes: IRoute[] = [
     items: [
       {
         name: 'CPFCal',
-        layout: '/admin',
-        path: '/dfuns/cpfcal',
+        layout: '/dfuns',
+        path: '/cpfcal',
         secondary: true,
       },
       {
         name: 'SGTax',
-        layout: '/admin',
-        path: '/dfuns/cpfcal',
+        layout: '/dfuns',
+        path: '/sgtax',
         secondary: true,
       },
       {
         name: 'OfferC',
-        layout: '/admin',
-        path: '/dfuns/offerc',
+        layout: '/dfuns',
+        path: '/offerc',
         secondary: true,
       },
     ],
