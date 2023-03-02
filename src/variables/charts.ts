@@ -113,7 +113,7 @@ export const lineChartOptionsSidebar = {
 export const lineChartDataOverallRevenue = [
   {
     name: 'Revenue',
-    data: [50, 64, 48, 66, 49, 68],
+    data: [50, 64, 48, 66, 49, 161],
   },
   {
     name: 'Profit',

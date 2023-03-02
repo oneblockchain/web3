@@ -18,7 +18,7 @@ export const findCurrentRoute = (routes: IRoute[], pathname: string): IRoute => 
 
 export const getActiveRoute = (routes: IRoute[], pathname: string): string => {
   const route = findCurrentRoute(routes, pathname);
-  return route?.name || 'Default Brand Text';
+  return route?.name || 'OneBlockchain SG';
 };
 
 export const getActiveNavbar = (routes: IRoute[], pathname: string): boolean => {

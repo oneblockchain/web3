@@ -40,17 +40,17 @@ function SidebarContent(props: SidebarContent) {
       >
         <SidebarCard />
       </Box>
-      <Flex mt="75px" mb="56px" justifyContent="center" alignItems="center">
+{/*       <Flex mt="75px" mb="56px" justifyContent="center" alignItems="center">
         <NextAvatar h="48px" w="48px" src={avatar4} me="20px" />
         <Box>
           <Text color={textColor} fontSize="md" fontWeight="700">
             Adela Parkson
           </Text>
           <Text color="secondaryGray.600" fontSize="sm" fontWeight="400">
-            Product Designer
+            Product Designer1
           </Text>
         </Box>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 }

@@ -51,7 +51,7 @@ export default function AdminLayout({ children }: {children: React.ReactNode}) {
             <Box>
               <Navbar
                 onOpen={onOpen}
-                logoText={'Horizon UI Dashboard PRO'}
+                logoText={'Horizon UI Dashboard PRO1'}
                 brandText={getActiveRoute(routes, pathname)}
                 secondary={getActiveNavbar(routes, pathname)}
                 fixed={fixed}

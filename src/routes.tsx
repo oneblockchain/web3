@@ -2,8 +2,12 @@ import { Icon } from '@chakra-ui/react';
 import {
   MdDashboard,
   MdHome,
-  MdLock,
+  MdInfo,
+  MdPaid,
+  MdCode,
+  MdMenuBook,
   MdOutlineShoppingCart,
+  MdOutlineContactMail,
 } from 'react-icons/md';
 
 // Auth Imports
@@ -14,7 +18,7 @@ const routes: IRoute[] = [
   {
     name: 'Home',
     layout: '/admin',
-    path: '/dashboards/default',
+    path: '/nfts/marketplace',
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: MdDashboard
   },
@@ -35,12 +39,12 @@ const routes: IRoute[] = [
     ,
     secondary: true
   },
-  /* {
-    name: 'dFuns',
+  {
+    name: 'Developer Portal',
     path: '/nfts',
     icon: (
       <Icon
-        as={MdOutlineShoppingCart}
+        as={MdCode}
         width="20px"
         height="20px"
         color="inherit"
@@ -49,31 +53,48 @@ const routes: IRoute[] = [
     collapse: true,
     items: [
       {
-        name: 'Marketplace',
+        name: 'Guide',
         layout: '/admin',
         path: '/nfts/marketplace',
         secondary: true,
       },
       {
-        name: 'Developer Portal',
+        name: 'TBD',
         layout: '/admin',
         path: '/nfts/collection',
         secondary: true,
       },
-       {
-        name: 'NFT Page',
-        layout: '/admin',
-        path: '/nfts/page',
-        secondary: true,
-      }, 
-      {
-        name: 'Profile',
-        layout: '/admin',
-        path: '/nfts/profile',
-        secondary: true,
-      },
     ],
-  }, */
+  }, 
+
+  {
+    name: 'Token Economy',
+    layout: '/admin',
+    path: '/nfts/marketplace',
+    icon: <Icon as={MdPaid} width='20px' height='20px' color='inherit' />,
+    component: MdPaid
+  },
+  {
+    name: 'Blog',
+    layout: '/admin',
+    path: '/nfts/marketplace',
+    icon: <Icon as={MdMenuBook} width='20px' height='20px' color='inherit' />,
+    component: MdMenuBook
+  },
+  {
+    name: 'Contact',
+    layout: '/admin',
+    path: '/nfts/marketplace',
+    icon: <Icon as={MdOutlineContactMail} width='20px' height='20px' color='inherit' />,
+    component: MdOutlineContactMail
+  },
+  {
+    name: 'About us',
+    layout: '/admin',
+    path: '/nfts/marketplace',
+    icon: <Icon as={MdInfo} width='20px' height='20px' color='inherit' />,
+    component: MdInfo
+  },
 /*   // // --- Main pages ---
   {
     name: 'Main Pages',

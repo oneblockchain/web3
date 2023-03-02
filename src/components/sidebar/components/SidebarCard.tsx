@@ -36,7 +36,7 @@ export default function SidebarDocs() {
           textAlign="center"
           px="10px"
         >
-          $3942.58
+          8848
         </Text>
         <Text
           fontSize="sm"
@@ -45,7 +45,7 @@ export default function SidebarDocs() {
           mb="14px"
           textAlign="center"
         >
-          Total balance
+          Total Token Minted
         </Text>
         {/* @ts-ignore */}
         <LightMode>
@@ -55,7 +55,7 @@ export default function SidebarDocs() {
             size="lg"
             borderRadius="58px"
           >
-            +2.45%
+            +11%
           </Badge>
         </LightMode>
         <Box h="160px">
