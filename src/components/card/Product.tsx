@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Badge, Flex, Icon, Text } from '@chakra-ui/react';
 import { Image } from 'components/image/Image';

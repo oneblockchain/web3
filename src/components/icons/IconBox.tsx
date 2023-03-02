@@ -1,3 +1,4 @@
+'use client'
 import { Flex } from '@chakra-ui/react';
 
 export default function IconBox(props: { icon: JSX.Element | string; [x: string]: any }) {

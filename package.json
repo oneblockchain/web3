@@ -22,15 +22,15 @@
     "apexcharts": "^3.35.2",
     "framer-motion": "^4.1.17",
     "mapbox-gl": "^2.10.0",
-    "next": "^12.2.5",
+    "next": "^13.2.1",
     "next-transpile-modules": "^9.0.0",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
     "react-calendar": "^3.7.0",
     "react-circular-progressbar": "^2.1.0",
     "react-circular-slider-svg": "^0.1.5",
     "react-custom-scrollbars-2": "^4.2.1",
-    "react-dom": "17.0.2",
+    "react-dom": "18.2.0",
     "react-dropzone": "^12.0.4",
     "react-icons": "^4.3.1",
     "react-is": "^18.0.0",
@@ -89,7 +89,7 @@
     "@types/react-table": "^7.7.12",
     "css-loader": "^6.7.1",
     "eslint": "^8.23.0",
-    "eslint-config-next": "^12.2.5",
+    "eslint-config-next": "^13.2.1",
     "gh-pages": "^3.2.3"
   }
 }

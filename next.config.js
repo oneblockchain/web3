@@ -1,13 +1,11 @@
 /** @type {import('next').NextConfig} */
 
-const withTM = require('next-transpile-modules')([
-  '@fullcalendar/common',
-  '@babel/preset-react',
-  '@fullcalendar/common',
-  '@fullcalendar/daygrid',
-  '@fullcalendar/interaction',
-  '@fullcalendar/react',
-]);
+// const withTM = require('next-transpile-modules')(['@babel/preset-react']);
+//   '@fullcalendar/common',
+//   '@fullcalendar/common',
+//   '@fullcalendar/daygrid',
+//   '@fullcalendar/interaction',
+//   '@fullcalendar/react',
 
 const nextConfig = {
   reactStrictMode: true,
@@ -23,6 +21,10 @@ const nextConfig = {
     // Make ENV
     unoptimized: true,
   },
+  experimental: {
+    appDir: true
+  },
 };
 
-module.exports = withTM(nextConfig);
+// module.exports = withTM(nextConfig);
+module.exports = nextConfig;

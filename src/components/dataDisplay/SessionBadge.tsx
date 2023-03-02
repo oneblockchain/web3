@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Flex, Badge, Text, useColorModeValue } from '@chakra-ui/react';
 

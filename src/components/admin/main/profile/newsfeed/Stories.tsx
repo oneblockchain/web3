@@ -1,3 +1,4 @@
+'use client'
 import { Flex, Button, Text, Icon, useColorModeValue } from '@chakra-ui/react';
 // Assets
 import avatar1 from '/public/img/avatars/avatar1.png';

@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Button, Flex,   useColorModeValue } from "@chakra-ui/react";
 import { useDropzone } from "react-dropzone";

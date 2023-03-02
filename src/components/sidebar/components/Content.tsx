@@ -1,3 +1,4 @@
+'use client'
 // chakra imports
 import { Box, Flex, Stack, Text, useColorModeValue } from '@chakra-ui/react';
 //   Custom components

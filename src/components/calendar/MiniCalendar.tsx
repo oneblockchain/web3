@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { Text, Icon } from '@chakra-ui/react';

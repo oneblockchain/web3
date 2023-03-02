@@ -1,3 +1,4 @@
+'use client'
 import { Button, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { NextAvatar } from 'components/image/Avatar';
 import Link from 'components/link/Link';

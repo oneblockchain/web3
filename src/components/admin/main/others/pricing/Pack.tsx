@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Badge, List, ListItem, ListIcon, Text, Button, useColorModeValue } from '@chakra-ui/react';
 // Custom components

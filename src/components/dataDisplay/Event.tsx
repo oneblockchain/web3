@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Flex, Text, useColorModeValue } from '@chakra-ui/react';
 export default function Event(props: { time: string; name: string; [x: string]: any }) {

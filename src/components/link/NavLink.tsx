@@ -1,3 +1,4 @@
+'use client'
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { CSSProperties, PropsWithChildren } from 'react';
 
@@ -8,8 +9,8 @@ type NavLinkProps = NextLinkProps &
 
 function NavLink({ children, styles, ...props }: NavLinkProps) {
   return (
-    <NextLink {...props}>
-      <a style={styles}>{children}</a>
+    <NextLink style={styles} {...props}>
+      {children}
     </NextLink>
   );
 }

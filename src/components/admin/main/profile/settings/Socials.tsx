@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Button, Flex, FormControl, Text, useColorModeValue } from '@chakra-ui/react';
 import Card from 'components/card/Card';

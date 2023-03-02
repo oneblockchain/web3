@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Button, LightMode } from '@chakra-ui/react';
 import Card from 'components/card/Card';

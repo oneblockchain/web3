@@ -1,3 +1,4 @@
+'use client'
 import { Box } from '@chakra-ui/react';
 
 export const renderTrack = ({ style, ...props }: any) => {

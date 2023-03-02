@@ -1,3 +1,4 @@
+'use client'
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import {
   buildStyles,

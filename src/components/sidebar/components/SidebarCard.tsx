@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Box, Flex, Text, Badge, LightMode } from '@chakra-ui/react';
 import LineChart from 'components/charts/LineChart';

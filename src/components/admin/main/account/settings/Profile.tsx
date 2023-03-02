@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import profileAvatar from '/public/img/avatars/avatar4.png';

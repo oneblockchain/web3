@@ -1,3 +1,4 @@
+'use client'
 /*eslint-disable*/
 
 import {
@@ -37,8 +38,7 @@ export default function Footer() {
         {' '}
         &copy; {new Date().getFullYear()}
         <Text as="span" fontWeight="500" ms="4px">
-           All Rights Reserved by OneBlockchain.sg
-{/*           Made with love by
+          Horizon UI. All Rights Reserved. Made with love by
           <Link
             mx="3px"
             color={textColor}
@@ -47,7 +47,7 @@ export default function Footer() {
             fontWeight="700"
           >
             Simmmple!
-          </Link> */}
+          </Link>
         </Text>
       </Text>
       <List display="flex">
@@ -60,12 +60,12 @@ export default function Footer() {
           <Link
             fontWeight="500"
             color={textColor}
-            href="mailto:support@oneblockchain.sg"
+            href="mailto:hello@simmmple.com"
           >
             Support
           </Link>
         </ListItem>
-{/*         <ListItem
+        <ListItem
           me={{
             base: '20px',
             md: '44px',
@@ -101,7 +101,7 @@ export default function Footer() {
           >
             Blog
           </Link>
-        </ListItem> */}
+        </ListItem>
       </List>
     </Flex>
   );

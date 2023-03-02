@@ -1,3 +1,4 @@
+'use client'
 // Custom components
 import Card from 'components/card/Card';
 import { useColorModeValue } from '@chakra-ui/react';

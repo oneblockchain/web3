@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable */
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';

@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Button, Flex, Icon, Text } from '@chakra-ui/react';
 import Details from '/public/img/ecommerce/Details.png';

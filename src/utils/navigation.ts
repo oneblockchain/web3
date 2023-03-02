@@ -4,29 +4,28 @@ import Router from 'next/router';
 // NextJS Requirement
 export const isWindowAvailable = () => typeof window !== 'undefined';
 
-export const findCurrentRoute = (routes: IRoute[]): IRoute => {
+export const findCurrentRoute = (routes: IRoute[], pathname: string): IRoute => {
   if (!isWindowAvailable()) return null;
 
   for (let route of routes) {
     if (!!route.items) {
-      const found = findCurrentRoute(route.items);
+      const found = findCurrentRoute(route.items, pathname);
       if (!!found) return found;
     }
-    if (Router.pathname.match(route.path) && route) return route;
+    if (pathname?.match(route.path) && route) return route;
   }
 };
 
-export const getActiveRoute = (routes: IRoute[]): string => {
-  const route = findCurrentRoute(routes);
-  console.log(route);
+export const getActiveRoute = (routes: IRoute[], pathname: string): string => {
+  const route = findCurrentRoute(routes, pathname);
   return route?.name || 'Default Brand Text';
 };
 
-export const getActiveNavbar = (routes: IRoute[]): boolean => {
-  const route = findCurrentRoute(routes);
+export const getActiveNavbar = (routes: IRoute[], pathname: string): boolean => {
+  const route = findCurrentRoute(routes, pathname);
   return route?.secondary;
 };
 
-export const getActiveNavbarText = (routes: IRoute[]): string | boolean => {
-  return getActiveRoute(routes) || false;
+export const getActiveNavbarText = (routes: IRoute[], pathname: string): string | boolean => {
+  return getActiveRoute(routes, pathname) || false;
 };

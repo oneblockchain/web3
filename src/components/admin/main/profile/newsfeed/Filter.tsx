@@ -1,3 +1,4 @@
+'use client'
 import { Button, Flex, Text, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import { useReducer } from 'react';
 

@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import {
   AspectRatio,
@@ -142,7 +143,7 @@ export default function NFT(props: {
             mt="25px"
           >
             <Text fontWeight="700" fontSize="sm" color={textColorBid}>
-              Current Month Usage: {currentbid}
+              Current Bid: {currentbid}
             </Text>
             <LinkButton
               href={download}
@@ -161,7 +162,7 @@ export default function NFT(props: {
               px="24px"
               py="5px"
             >
-              Try it now
+              Place Bid
             </LinkButton>
           </Flex>
         </Flex>

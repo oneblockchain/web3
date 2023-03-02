@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Flex, Box, Icon, Text, useColorModeValue } from '@chakra-ui/react';
 import LineChart from 'components/charts/LineChart';

@@ -1,3 +1,4 @@
+'use client'
 import { Box, Button, Icon, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 // Custom components
 import Card from 'components/card/Card';

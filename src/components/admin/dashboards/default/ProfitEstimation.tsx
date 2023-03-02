@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Flex, Box, Text, useColorModeValue } from '@chakra-ui/react';
 import CircularProgress from 'components/charts/CircularProgress';

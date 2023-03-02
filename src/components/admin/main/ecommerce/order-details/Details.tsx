@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { AspectRatio, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'components/link/Link';

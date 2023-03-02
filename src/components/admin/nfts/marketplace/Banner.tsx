@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Button, Flex, Text } from '@chakra-ui/react';
 import Link from 'components/link/Link';

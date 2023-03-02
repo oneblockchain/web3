@@ -1,3 +1,4 @@
+'use client'
 import Link, { LinkProps } from 'next/link';
 import { Button, ButtonProps } from '@chakra-ui/react';
 
@@ -11,7 +12,7 @@ export default function LinkButton({
 }: ChakraAndNextProps) {
   return (
     <Link href={href} passHref prefetch={prefetch}>
-      <Button as="a" {...props}>
+      <Button {...props}>
         {children}
       </Button>
     </Link>

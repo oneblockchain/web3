@@ -1,3 +1,4 @@
+'use client'
 // Chakra imports
 import { Flex, Box, FormLabel, Input, Tag, TagCloseButton, TagLabel, useColorModeValue } from '@chakra-ui/react';
 // Custom components

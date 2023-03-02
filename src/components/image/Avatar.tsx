@@ -1,3 +1,4 @@
+'use client'
 import { chakra, useColorMode } from '@chakra-ui/system';
 import { ComponentProps } from 'react';
 import { Image } from './Image';

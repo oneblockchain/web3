@@ -1,3 +1,4 @@
+'use client'
 import { Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import Card from 'components/card/Card';
 import React, { useState } from 'react';

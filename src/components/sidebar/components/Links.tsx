@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable */
 
 // chakra imports
@@ -19,9 +20,9 @@ import {
 // Assets
 import { FaCircle } from 'react-icons/fa';
 import NavLink from 'components/link/NavLink';
-import { useRouter } from 'next/router';
 import { IRoute } from 'types/navigation';
-import { PropsWithChildren } from 'react';
+import {PropsWithChildren, useCallback} from 'react';
+import {usePathname} from "next/navigation";
 
 interface SidebarLinksProps extends PropsWithChildren {
   routes: IRoute[];
@@ -29,7 +30,7 @@ interface SidebarLinksProps extends PropsWithChildren {
 
 export function SidebarLinks(props: SidebarLinksProps) {
   //   Chakra color mode
-  let location = useRouter();
+  const pathname = usePathname()
   let activeColor = useColorModeValue('gray.700', 'white');
   let inactiveColor = useColorModeValue(
     'secondaryGray.600',
@@ -40,9 +41,9 @@ export function SidebarLinks(props: SidebarLinksProps) {
   const { routes } = props;
 
   // verifies if routeName is the one active (in browser input)
-  const activeRoute = (routeName: string) => {
-    return location.pathname.includes(routeName);
-  };
+  const activeRoute = useCallback((routeName: string) => {
+    return pathname?.includes(routeName);
+  }, [pathname]);
 
   // this function creates the links and collapses that appear in the sidebar (left menu)
   const createLinks = (routes: IRoute[]) => {

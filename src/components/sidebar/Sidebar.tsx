@@ -1,3 +1,4 @@
+'use client'
 import React, { PropsWithChildren } from 'react';
 
 // chakra imports
@@ -26,7 +27,7 @@ import { IoMenuOutline } from 'react-icons/io5';
 import { IRoute } from 'types/navigation';
 import { isWindowAvailable } from 'utils/navigation';
 
-interface SidebarProps extends PropsWithChildren {
+export interface SidebarProps extends PropsWithChildren {
   routes: IRoute[];
 }
 
