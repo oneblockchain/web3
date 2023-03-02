@@ -134,7 +134,7 @@ const Connected: FC = () => {
     <Container>
       <VStack spacing={10}>
         <Heading
-          color="white"
+          color="black"
           as="h3"
           size="2xl"
           noOfLines={3}
@@ -142,7 +142,7 @@ const Connected: FC = () => {
         >
           Calculate your monthly CPF contribution (standard ver1.0)
         </Heading>
-        <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px" color="white">
+        <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px" color="blue">
           <FormControl id="salary">
             <FormLabel>Monthly Salary:</FormLabel>
             <Input type="number" value={salary} onChange={(event) => setSalary(parseFloat(event.target.value))} />
@@ -168,7 +168,7 @@ const Connected: FC = () => {
     </Button>
         </VStack>
         {cpfContributions && (
-          <VStack width="100%" maxW="600px" spacing={1} color="white">
+          <VStack width="100%" maxW="600px" spacing={1} color="blace">
             <Text>Monthly CPF by your employer: ${cpfContributions.cpf_emp.toFixed(2)}</Text>
             <Text>Monthly CPF by yourself: ${cpfContributions.cpf_self.toFixed(2)}</Text>
             <Text>Monthly CPF total: ${cpfContributions.cpf_tot.toFixed(2)}</Text>
@@ -179,9 +179,9 @@ const Connected: FC = () => {
       </VStack>
     )}
         <Button
-          bgColor="accent"
+          bgColor="purple"
           color="white"
-          maxW="580px"
+
           onClick={handleClick}
           >
       <HStack>

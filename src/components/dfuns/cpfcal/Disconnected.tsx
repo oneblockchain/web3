@@ -116,8 +116,10 @@ const Disconnected: FC = () => {
 
       if (!wallet) {
         modalState.setVisible(true)
+        console.log('Wallet not connected!', wallet);
       } else {
         connect().catch(() => {})
+        console.log('Wallet connected!', wallet);
       }
     },
     [wallet, connect, modalState]
@@ -134,7 +136,7 @@ const Disconnected: FC = () => {
     <Container>
       <VStack spacing={10}>
         <Heading
-          color="white"
+          color="black"
           as="h3"
           size="2xl"
           noOfLines={3}
@@ -142,7 +144,7 @@ const Disconnected: FC = () => {
         >
           Calculate your monthly CPF contribution (basic ver1.0)
         </Heading>
-        <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px" color="white">
+        <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px" color="black">
           <FormControl id="salary">
             <FormLabel>Monthly Salary:</FormLabel>
             <Input type="number" value={salary} onChange={(event) => setSalary(parseFloat(event.target.value))} />
@@ -158,7 +160,7 @@ const Disconnected: FC = () => {
        {/*    <Button type="submit">Calculate CPF Contributions</Button> */}
           <Button
           bgColor="teal"
-          color="white"
+          color="black"
           maxW="380px"
           onClick={handleSubmit}
           >
@@ -168,7 +170,7 @@ const Disconnected: FC = () => {
     </Button>
         </VStack>
         {cpfContributions && (
-          <VStack width="100%" maxW="600px" spacing={1} color="white">
+          <VStack width="100%" maxW="600px" spacing={1} color="black">
             <Text>Monthly CPF by your employer: ${cpfContributions.cpf_emp.toFixed(2)}</Text>
             <Text>Monthly CPF by yourself: ${cpfContributions.cpf_self.toFixed(2)}</Text>
             <Text>Monthly CPF total: ${cpfContributions.cpf_tot.toFixed(2)}</Text>
@@ -179,8 +181,8 @@ const Disconnected: FC = () => {
       </VStack>
     )}
         <Button
-          bgColor="accent"
-          color="white"
+          bgColor="purple"
+          color="black"
           maxW="380px"
           onClick={handleClick}
           >

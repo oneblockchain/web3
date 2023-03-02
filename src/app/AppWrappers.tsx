@@ -6,14 +6,16 @@ import 'styles/Plugins.css';
 import 'styles/MiniCalendar.css';
 import {ChakraProvider} from "@chakra-ui/react";
 import theme from "../theme/theme";
+import WalletContextProvider from 'components/dfuns/cpfcal/WalletContextProvider';
 
 export default function AppWrappers({
   children,
 }: {
   children: ReactNode;
 }) {
-	 return (<ChakraProvider theme={theme}>
-		 {children}
+	 return (
+   <ChakraProvider theme={theme}>
+		<WalletContextProvider>{children}</WalletContextProvider> 
 	 </ChakraProvider>
   );
 }

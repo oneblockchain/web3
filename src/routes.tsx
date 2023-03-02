@@ -28,7 +28,7 @@ const routes: IRoute[] = [
     path: '/nfts',
     icon: (
       <Icon
-        as={MdCode}
+        as={MdOutlineShoppingCart}
         width="20px"
         height="20px"
         color="inherit"
