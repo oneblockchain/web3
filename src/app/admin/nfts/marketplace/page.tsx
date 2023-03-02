@@ -85,7 +85,7 @@ export default function Marketplace() {
                 ms="24px"
                 fontWeight="700"
               >
-                Trending NFTs
+                Trending dFunctions
               </Text>
               <Flex
                 align="center"
@@ -99,13 +99,13 @@ export default function Marketplace() {
                   me={{ base: '34px', md: '44px' }}
                   href={''}
                 >
-                  Art
+                  Personal Finance
                 </Link>
                 <Link
                   href={''}
                   color={textColorBrand}
                   me={{ base: '34px', md: '44px' }}>
-                  Music
+                  AI
                 </Link>
                 <Link
                   color={textColorBrand}
@@ -113,64 +113,46 @@ export default function Marketplace() {
                   me={{ base: '34px', md: '44px' }}
                   href="/admin/nfts#collectibles"
                 >
-                  Collectibles
+                  Useful Tooks
                 </Link>
                 <Link color={textColorBrand} fontWeight="500" href="/admin/nfts#sports">
-                  Sports
+                  Small Business
                 </Link>
               </Flex>
             </Flex>
             <SimpleGrid columns={{ base: 1, md: 3 }} gap="20px">
               <NFT
-                name="Abstract Colors"
-                author="By Esthera Jackson"
+                name="CPF Contribution Calulator"
+                author="By The One"
                 bidders={[
                   Avatar1,
                   Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
                 ]}
                 image={Nft1}
-                currentbid="0.91 ETH"
-                download="#"
+                currentbid="2000"
+                download="https://demo-cpfcal.oneblockchain.sg/"
               />
               <NFT
-                name="ETH AI Brain"
-                author="By Nick Wilson"
+                name="Income Tax Estimator"
+                author="By The One"
                 bidders={[
                   Avatar1,
                   Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
                 ]}
                 image={Nft2}
-                currentbid="0.91 ETH"
-                download="#"
+                currentbid="1999"
+                download="https://demo-sgtax.oneblockchain.sg/"
               />
               <NFT
-                name="Mesh Gradients "
-                author="By Will Smith"
+                name="Compare Job Offer"
+                author="By The One"
                 bidders={[
                   Avatar1,
                   Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
                 ]}
                 image={Nft3}
-                currentbid="0.91 ETH"
-                download="#"
+                currentbid="1888"
+                download="https://demo-offerc.oneblockchain.sg/"
               />
             </SimpleGrid>
             <Text
@@ -189,54 +171,36 @@ export default function Marketplace() {
               mb={{ base: '20px', xl: '0px' }}
             >
               <NFT
-                name="Swipe Circles"
+                name="URL2QR"
                 author="By Peter Will"
                 bidders={[
                   Avatar1,
                   Avatar2,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
                 ]}
                 image={Nft4}
-                currentbid="0.91 ETH"
+                currentbid="1111"
                 download="#"
               />
               <NFT
-                name="Colorful Heaven"
+                name="Image"
                 author="By Mark Benjamin"
                 bidders={[
-                  Avatar1,
-                  Avatar2,
                   Avatar3,
                   Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
                 ]}
                 image={Nft5}
-                currentbid="0.91 ETH"
+                currentbid="999"
                 download="#"
               />
               <NFT
                 name="3D Cubes Art"
                 author="By Manny Gates"
                 bidders={[
-                  Avatar1,
-                  Avatar2,
                   Avatar3,
                   Avatar4,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
                 ]}
                 image={Nft6}
-                currentbid="0.91 ETH"
+                currentbid="888"
                 download="#"
               />
             </SimpleGrid>
