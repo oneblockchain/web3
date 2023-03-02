@@ -10,7 +10,7 @@ export default function RootHead() {
 				href={process.env.NEXT_PUBLIC_BASE_PATH || '' + '/favicon.ico'}
 			/>
 
-		  <title>Horizon UI PRO NextJS</title>
+		  <title>OneBlockchain SG dFuns Marketplace</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#000000" />
 	</>

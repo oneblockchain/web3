@@ -32,7 +32,7 @@ export function ItemContent(props:{info:string}) {
             fontSize={{ base: "sm", md: "sm" }}
             lineHeight='100%'
             color={textColor}>
-            A new update for your downloaded item is available!
+            New dFun to Compare your Job offer added to our marketplace. 
           </Text>
         </Flex>
       </Flex>

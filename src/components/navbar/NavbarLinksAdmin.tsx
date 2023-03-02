@@ -143,7 +143,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon UI Dashboard PRO" />
+              <ItemContent info="Compare your offer" />
             </MenuItem>
             <MenuItem
               _hover={{ bg: 'none' }}
@@ -152,7 +152,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               borderRadius="8px"
               mb="10px"
             >
-              <ItemContent info="Horizon Design System Free" />
+              <ItemContent info="Fast Estimate your Income Tax" />
             </MenuItem>
           </Flex>
         </MenuList>
@@ -182,14 +182,14 @@ export default function HeaderLinks(props: { secondary: boolean }) {
         >
           <Image src={navImage} borderRadius="16px" mb="28px" alt="" />
           <Flex flexDirection="column">
-            <Link w="100%" href="https://horizon-ui.com/pro">
+            <Link w="100%" href="">
               <Button w="100%" h="44px" mb="10px" variant="brand">
-                Buy Horizon UI PRO
+                AAA
               </Button>
             </Link>
             <Link
               w="100%"
-              href="https://horizon-ui.com/documentation/docs/introduction"
+              href=""
             >
               <Button
                 w="100%"
@@ -204,7 +204,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
             </Link>
             <Link
               w="100%"
-              href="https://github.com/horizon-ui/horizon-ui-chakra-nextjs"
+              href=""
             >
               <Button
                 w="100%"
@@ -213,7 +213,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
                 color={textColor}
                 bg="transparent"
               >
-                Try Horizon Free
+                Earn Token Free
               </Button>
             </Link>
           </Flex>
@@ -274,7 +274,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
               fontWeight="700"
               color={textColor}
             >
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, demo
             </Text>
           </Flex>
           <Flex flexDirection="column" p="10px">

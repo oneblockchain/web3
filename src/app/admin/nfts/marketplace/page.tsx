@@ -228,7 +228,7 @@ export default function Marketplace() {
             </Flex>
 
             <HistoryItem
-              name="Colorful Heaven"
+              name="Colorful Heaven1"
               author="By Mark Benjamin"
               date="30s ago"
               image={Nft5}

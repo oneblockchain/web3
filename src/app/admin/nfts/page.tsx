@@ -118,7 +118,7 @@ export default function Page() {
           download="#"
         />
         <NFT
-          name="Colorful Heaven"
+          name="Colorful1 Heaven"
           author="By Mark Benjamin"
           bidders={[
             Avatar1,
