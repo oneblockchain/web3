@@ -203,8 +203,7 @@ const data = [
 
 
       <Button
-        bgColor="purple"
-        color="black"
+        bgColor="violet"
         onClick={handleClick}
       >
         <Text>Pay 2 tokens to see more</Text>

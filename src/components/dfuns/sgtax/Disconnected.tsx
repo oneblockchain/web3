@@ -105,8 +105,7 @@ const Disconnected = () => {
       <Text>Annual Chargeable Income: {new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD' }).format(income)}</Text>
       <Text mb={4}>Estimated Income Tax Payable: {new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD' }).format(tax)}</Text>
       <Button
-          bgColor="purple"
-          color="black"
+          bgColor="violet"
           onClick={handleClick}
           >
         <Text>Link your wallet to see more</Text>

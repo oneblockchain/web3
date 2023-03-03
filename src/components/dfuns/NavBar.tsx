@@ -9,11 +9,11 @@ const WalletMultiButtonDynamic = dynamic(
 		(await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
 	{ ssr: false }
 );
-
+// <WalletMultiButtonDynamic className={styles["wallet-adapter-button-trigger"]}
 const NavBar: FC = () => {
   return (
     <HStack  padding={1}>
-			<WalletMultiButtonDynamic className={styles["wallet-adapter-button-trigger"]}/>
+			<WalletMultiButtonDynamic />
     </HStack>
   )
 }

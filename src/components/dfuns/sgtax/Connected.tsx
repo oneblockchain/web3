@@ -2,7 +2,7 @@
 import { FC, MouseEventHandler, useCallback, useState } from "react"
 import { Container, Input, Button, Text, Select } from '@chakra-ui/react'
 import { ArrowForwardIcon } from "@chakra-ui/icons"
-import { PieChart, Pie, Sector, Cell, Legend, ResponsiveContainer } from 'recharts';
+import { Chart } from "react-google-charts";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 
@@ -18,29 +18,23 @@ const Connected: FC = () => {
   const [tax_percent, setTax_percent] = useState<number>(0); 
   const [cpf_year, setCpf_year] = useState<number>(0); 
   const [cpf_topup, setCpf_topup] = useState<number>(5000); 
+  const [cash_inhand, setCash_inhand] = useState<number>(0); 
 
   const modalState = useWalletModal()
   const { wallet, connect } = useWallet()
 
   //chart
   const data = [
-    { name: 'CPF Contributed', value: cpf_year },
-    { name: 'Tax Paid', value: tax },
-    { name: 'Income', value: income },
-  ];
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    ["Annual", "Amount"],
+    ["CPF contributed by All", cpf_year],
+    ["Tax Paid", tax],
+    ["Cash In Hand", cash_inhand],
 
-  const RADIAN = Math.PI / 180;
-  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-    return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${(percent * 100).toFixed(0)}%`}
-      </text>
-    );
-  }
+  ];
+  const options = {
+    title: "Annual Income",
+  };
+
 
   const calculateTax = () => {
     let annualSalary = salary * 12;
@@ -54,6 +48,7 @@ const Connected: FC = () => {
     let cpf_month = Math.min(salary, 6000) * 0.37;
     let cpf_bonus = bonus * 0.37;
     let cpf_year  = Math.min((cpf_month * 12 + cpf_bonus),37740)
+    let cashInHand = 0;
  
     // calculate taxable annual income
     if (chargeableIncome <= 20000) {
@@ -102,12 +97,14 @@ const Connected: FC = () => {
     taxAmount_afterCpfTopup = Math.max((taxAmount_afterCpfTopup - tax_rebate),0)
     taxSaved = taxAmount - taxAmount_afterCpfTopup
     taxPercent = Math.round((taxAmount / (annualSalary + annualBonus)) * 100)
+    cashInHand = annualSalary + annualBonus - taxAmount - (cpf_year * 20 /37)
     setIncome(chargeableIncome);
     setTax(taxAmount);
     setTax_percent(taxPercent)
     setCpf_year(cpf_year)
     setTax_afterCpfTopup(taxAmount_afterCpfTopup)
     setTax_saved(taxSaved)
+    setCash_inhand(cashInHand)
   };
 
   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -207,8 +204,7 @@ const Connected: FC = () => {
 
 
       <Button
-        bgColor="purple"
-        color="black"
+        bgColor="violet"
         onClick={handleClick}
       >
         <Text>Pay 2 tokens to view more</Text>
@@ -216,24 +212,14 @@ const Connected: FC = () => {
 
       </Button>
     </Container>
-    <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={666} height={666}>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            labelLine={false}
-            label={renderCustomizedLabel}
-            outerRadius={80}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-            <Legend layout="vertical" verticalAlign="middle" align="right" />
-          </Pie>
-        </PieChart></ResponsiveContainer></>
+    <Chart
+      chartType="PieChart"
+      data={data}
+      options={options}
+      width={"100%"}
+      height={"300px"}
+    />
+    </>
   );
 };
 

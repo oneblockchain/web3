@@ -13,6 +13,7 @@ import {
   Box,
   Stack,
 } from "@chakra-ui/react"
+import { Chart } from "react-google-charts";
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
@@ -130,11 +131,32 @@ const Connected: FC = () => {
     setCpfContributions(newCpfContributions);
   }
 
+  // 2 level pie chart
+  const data01 = [
+    { name: 'By Employer', value: cpfContributions.cpf_emp },
+    { name: 'By Yourself', value: cpfContributions.cpf_self },
+  ];
+  const data02 = [
+    { name: 'OA', value: cpfContributions.cpf_oa },
+    { name: 'MA', value: cpfContributions.cpf_ma },
+    { name: 'SA', value: cpfContributions.cpf_sa },
+
+  ];
+ const data = [
+    ["CPF Account", "Month Amount"],
+    ["OA", cpfContributions.cpf_oa],
+    ["MA", cpfContributions.cpf_ma],
+    ["SA/RA", cpfContributions.cpf_sa],
+
+  ];
+  const options = {
+    title: "Monthly Contribution by Account",
+  };
+
   return (
-    <Container>
+    <><Container>
       <VStack spacing={10}>
         <Heading
-          color="black"
           as="h3"
           size="xl"
           noOfLines={3}
@@ -142,7 +164,7 @@ const Connected: FC = () => {
         >
           Calculate your monthly CPF contribution (standard ver1.0)
         </Heading>
-        <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px" color="blue">
+        <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px">
           <FormControl id="salary">
             <FormLabel>Monthly Salary:</FormLabel>
             <Input type="number" value={salary} onChange={(event) => setSalary(parseFloat(event.target.value))} />
@@ -155,20 +177,18 @@ const Connected: FC = () => {
             <FormLabel>Age:</FormLabel>
             <Input type="number" value={age} onChange={(event) => setAge(parseInt(event.target.value))} />
           </FormControl>
-       {/*    <Button type="submit">Calculate CPF Contributions</Button> */}
+          {/*    <Button type="submit">Calculate CPF Contributions</Button> */}
           <Button
-          bgColor="teal"
-          color="white"
-          maxW="380px"
-          onClick={handleSubmit}
+            bgColor="teal"
+            onClick={handleSubmit}
           >
-      <HStack>
-        <Text>Calculate CPF Contributions & Mint Token</Text>
-      </HStack>
-    </Button>
+            <HStack>
+              <Text>Calculate CPF Contributions & Mint Token</Text>
+            </HStack>
+          </Button>
         </VStack>
         {cpfContributions && (
-          <VStack width="100%" maxW="600px" spacing={1} color="black">
+          <VStack width="100%" maxW="600px" spacing={1}>
             <Text>Monthly CPF by your employer: ${cpfContributions.cpf_emp.toFixed(2)}</Text>
             <Text>Monthly CPF by yourself: ${cpfContributions.cpf_self.toFixed(2)}</Text>
             <Text>Monthly CPF total: ${cpfContributions.cpf_tot.toFixed(2)}</Text>
@@ -176,21 +196,33 @@ const Connected: FC = () => {
             <Text>Monthly CPF SA: ${cpfContributions.cpf_sa.toFixed(2)}</Text>
             <Text>Monthly CPF MA: ${cpfContributions.cpf_ma.toFixed(2)}</Text>
             <Text>Yearly CPF total: ${cpfContributions.year_tot.toFixed(2)}</Text>
-      </VStack>
-    )}
+          </VStack>
+        )}
         <Button
-          bgColor="purple"
-          color="white"
-
+          bgColor="violet"
           onClick={handleClick}
-          >
-      <HStack>
-        <Text>Pay 2 tokens to Preview new contribution amounts after changes of 2023</Text>
-        <ArrowForwardIcon />
-      </HStack>
-    </Button>
-  </VStack>
-</Container>
+        >
+          <HStack>
+            <Text>Pay 2 tokens to Preview new contribution amounts after changes of 2023</Text>
+            <ArrowForwardIcon />
+          </HStack>
+        </Button>
+      </VStack>
+    </Container>
+{/*     <ResponsiveContainer width="100%" height="100%">
+        <PieChart width={400} height={400}>
+          <Pie data={data01} dataKey="value" cx="50%" cy="50%" outerRadius={60} fill="#8884d8" />
+          <Pie data={data02} dataKey="value" cx="50%" cy="50%" innerRadius={70} outerRadius={90} fill="#82ca9d" label />
+        </PieChart>
+      </ResponsiveContainer> */}
+      <Chart
+      chartType="PieChart"
+      data={data}
+      options={options}
+      width={"100%"}
+      height={"400px"}
+    />
+    </>
   )
 }
 export default Connected

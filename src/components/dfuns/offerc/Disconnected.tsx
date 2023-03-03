@@ -182,8 +182,7 @@ const Disconnected = () => {
       <Text>New Offer Annual Income Before/After tax: {formatCurrency(income_b4tax_offer1)} / {formatCurrency(income_aftax_offer1)}</Text>
       <Text mb={4}>Income Increment Before/After tax: {formatCurrency(increase_b4tax)} / {formatCurrency(increase_aftax)}</Text>
       <Button
-          bgColor="purple"
-          color="black"
+          bgColor="violet"
           onClick={handleClick}
           >
         <Text>Link your wallet to see more</Text>
