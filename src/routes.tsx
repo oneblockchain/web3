@@ -17,8 +17,8 @@ const routes: IRoute[] = [
   // --- Dashboards ---
   {
     name: 'dFuns Marketplace',
-    layout: '/admin',
-    path: '/nfts/marketplace',
+    layout: '/dfuns',
+    path: '/marketplace',
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: MdDashboard
   },

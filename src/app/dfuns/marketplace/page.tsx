@@ -1,25 +1,8 @@
 'use client'
 /*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   ____  ____   ___  
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| |  _ \|  _ \ / _ \ 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || |  | |_) | |_) | | | |
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |  |  __/|  _ <| |_| |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___| |_|   |_| \_\\___/ 
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI Dashboard PRO - v1.0.0
-=========================================================
+Issue: after add relative path to download, clicking will reset wallet status
 
-* Product Page: https://www.horizon-ui.com/pro/
-* Copyright 2022 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+ */
 
 // Chakra imports
 import {
@@ -130,7 +113,7 @@ export default function Marketplace() {
                 ]}
                 image={Nft1}
                 currentbid="2000"
-                download="https://demo-cpfcal.oneblockchain.sg/"
+                download="/dfuns/cpfcal"
               />
               <NFT
                 name="Income Tax Estimator"
@@ -141,7 +124,7 @@ export default function Marketplace() {
                 ]}
                 image={Nft2}
                 currentbid="1999"
-                download="https://demo-sgtax.oneblockchain.sg/"
+                download="/dfuns/sgtax"
               />
               <NFT
                 name="Compare Job Offer"
@@ -152,7 +135,7 @@ export default function Marketplace() {
                 ]}
                 image={Nft3}
                 currentbid="1888"
-                download="https://demo-offerc.oneblockchain.sg/"
+                download="/dfuns/offerc"
               />
             </SimpleGrid>
             <Text
@@ -231,21 +214,21 @@ export default function Marketplace() {
               name="CPF Contribution Calulator"
               author="By The One"
               date="30s ago"
-              image={Nft5}
+              image={Nft1}
               price="2 Token"
             />
             <HistoryItem
               name="Income Tax Estimator"
               author="By The One"
               date="58s ago"
-              image={Nft1}
+              image={Nft2}
               price="3 Token"
             />
             <HistoryItem
               name="Compare Job Offer"
               author="By The One"
               date="1m ago"
-              image={Nft2}
+              image={Nft3}
               price="5 Token"
             />
           </Card>
