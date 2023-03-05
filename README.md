@@ -11,7 +11,7 @@ Do not re-produce if not authorized. All rights reserved.
 Run in terminal this command:
 
 ```bash
-yarn install
+npm i --force
 ```
 
 Then run this command to start your local server
