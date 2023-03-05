@@ -109,7 +109,6 @@ export default function Marketplace() {
                 author="By The One"
                 bidders={[
                   Avatar1,
-                  Avatar2,
                 ]}
                 image={Nft1}
                 currentbid="2000"
@@ -120,7 +119,6 @@ export default function Marketplace() {
                 author="By The One"
                 bidders={[
                   Avatar1,
-                  Avatar2,
                 ]}
                 image={Nft2}
                 currentbid="1999"
@@ -131,7 +129,6 @@ export default function Marketplace() {
                 author="By The One"
                 bidders={[
                   Avatar1,
-                  Avatar2,
                 ]}
                 image={Nft3}
                 currentbid="1888"

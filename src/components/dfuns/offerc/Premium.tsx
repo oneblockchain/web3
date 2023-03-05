@@ -1,7 +1,6 @@
 'use client'
 import { FC, MouseEventHandler, useCallback, useState } from "react"
-import { Container, Input, Button, Text } from '@chakra-ui/react'
-import Link from "next/link"
+import { Container, Input, Button, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts';
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
@@ -17,6 +16,8 @@ const Connected = () => {
   const [income_aftax, setIncome_aftax] = useState<number>(0);
   const [income_b4tax_offer1, setIncome_b4tax_offer1] = useState<number>(0);
   const [income_aftax_offer1, setIncome_aftax_offer1] = useState<number>(0);
+  const [year_tot, setYear_tot] = useState<number>(0);
+  const [year_tot_offer1, setYear_tot_offer1] = useState<number>(0);
   const [tax, setTax] = useState<number>(0);
   const [tax_offer1, setTax_offer1] = useState<number>(0);
 
@@ -36,6 +37,14 @@ const Connected = () => {
     let incomeAftaxOffer1 =0;
     let taxAmount = 0;
     let taxAmountOffer1 = 0;
+    let cpfSalary = Math.min(salary, 6000);
+    let cpfSalaryOffer1 = Math.min(salary_offer1, 6000);
+    let rate_emp = 0.17;
+    let rate_self = 0.20;
+    let cpf_emp, cpf_self;
+    let year_cpf_emp, year_cpf_self, yeartot;
+    let cpf_emp_offer1, cpf_self_offer1;
+    let year_cpf_emp_offer1, year_cpf_self_offer1, yeartotOffer1;
 
     if (chargeableIncome <= 20000) {
       taxAmount = 0;
@@ -65,6 +74,14 @@ const Connected = () => {
     setIncome_b4tax(incomeB4tax)
     setIncome_aftax(incomeAftax);
     setTax(taxAmount);
+
+// current cpf
+    cpf_emp  = cpfSalary * rate_emp
+    cpf_self = cpfSalary * rate_self
+    year_cpf_emp  = cpf_emp * 12 + bonus * rate_emp
+    year_cpf_self = cpf_self * 12 + bonus * rate_self
+    yeartot = Math.min((year_cpf_emp + year_cpf_self),37740)
+    setYear_tot(yeartot);
 // Offer1 tax
     if (chargeableIncomeOffer1 <= 20000) {
       taxAmountOffer1 = 0;
@@ -94,12 +111,24 @@ const Connected = () => {
     setIncome_b4tax_offer1(incomeB4taxOffer1);
     setIncome_aftax_offer1(incomeAftaxOffer1)
     setTax_offer1(taxAmountOffer1);
+    // offer 1 cpf
+    cpf_emp_offer1 = cpfSalaryOffer1 * rate_emp
+    cpf_self_offer1 = cpfSalaryOffer1 * rate_self
+    year_cpf_emp_offer1  = cpf_emp_offer1 * 12 + bonus_offer1 * rate_emp
+    year_cpf_self_offer1 = cpf_self_offer1 * 12 + bonus_offer1 * rate_self
+    yeartotOffer1 = Math.min((year_cpf_emp_offer1 + year_cpf_self_offer1),37740)
+    setYear_tot_offer1(yeartotOffer1)
   };
 
   let increase_b4tax = income_b4tax_offer1 - income_b4tax;
   let increase_aftax = income_aftax_offer1 - income_aftax;
   let per_b4tax = Math.round((increase_b4tax / income_b4tax) * 100)
   let per_aftax = Math.round((increase_aftax / income_aftax) * 100)
+  // TAC
+  let tac_b4tax = income_b4tax + (year_tot * 17 / 37)
+  let tac_b4tax_offer1 = income_b4tax_offer1 + (year_tot_offer1 * 17 / 37)
+  let increase_tac_b4tax = tac_b4tax_offer1 - tac_b4tax
+  let per_tac_b4tax = Math.round((increase_tac_b4tax / tac_b4tax) * 100)
 
 // bar chart
 const data = [
@@ -113,6 +142,12 @@ const data = [
     current: income_aftax,
     new: income_aftax_offer1,
   },
+];
+// stacked bar chart
+const dataS = [
+  { name: 'Current', AfterTax: income_aftax, CPF: year_tot, Tax: tax },
+  { name: 'New Offer', AfterTax: income_aftax_offer1, CPF: year_tot_offer1, Tax: tax_offer1 },
+
 ];
 
 
@@ -158,7 +193,7 @@ const data = [
   return (
     <><Container maxW="lg" centerContent>
       <Text fontSize="xl" mb={1}>Singapore Job Offer Compare</Text>
-      <Text fontSize="l" mb={2}>FY2023 standard ver1.0</Text>
+      <Text fontSize="l" mb={2}>FY2023 Premium ver1.0</Text>
       <Text textAlign="left"
         w="100%"
         maxW="md"
@@ -195,16 +230,15 @@ const data = [
         borderRadius="md">Enter Total Tax Relief:</Text>
       <Input type="number" placeholder="Enter tax relief" value={relief} onChange={handleReliefChange} mb={2} />
 
-      <Button colorScheme="teal" onClick={calculateTax} mb={4}>Compare Increment and Mint Token</Button>
+      <Button colorScheme="teal" onClick={calculateTax} mb={4}>Compare Increment</Button>
 
       <Text>Current Annual Income Before/After tax: {formatCurrency(income_b4tax)} / {formatCurrency(income_aftax)}</Text>
       <Text>New Offer Annual Income Before/After tax: {formatCurrency(income_b4tax_offer1)} / {formatCurrency(income_aftax_offer1)}</Text>
-      <Text mb={4}>Income Increment Before/After tax: {formatCurrency(increase_b4tax)} ({per_b4tax}%) / {formatCurrency(increase_aftax)} ({per_aftax}%)</Text>
-
-      <Link href="/dfuns/offercP">
-        <Button bgColor="violet" as="a">Pay 5 tokens to see more</Button>
-      </Link>
-
+      <Text>Income Increment Before/After tax: {formatCurrency(increase_b4tax)} ({per_b4tax}%) / {formatCurrency(increase_aftax)} ({per_aftax}%)</Text>
+      <Text mb={2}>Total Annual CPF Current/New Offer: {formatCurrency(year_tot)} / {formatCurrency(year_tot_offer1)}</Text>
+      <Text mb={1}>Total Annual Compensation (Base+Bonus+Employer CPF): </Text>
+      <Text > Before Tax - Current/New Offer: {formatCurrency(tac_b4tax)} / {formatCurrency(tac_b4tax_offer1)} ({per_tac_b4tax}%)</Text>
+   
 {/*       <Button
         bgColor="violet"
         onClick={handleClick}
@@ -225,6 +259,18 @@ const data = [
           <Legend />
           <Bar dataKey="current" fill="#8884d8" />
           <Bar dataKey="new" fill="#82ca9d" />
+        </BarChart>
+        </ResponsiveContainer>
+    <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={dataS} >
+            <CartesianGrid />
+            <XAxis dataKey="name" />
+            <Tooltip />
+            <Legend />
+            <YAxis />
+            <Bar dataKey="AfterTax" stackId="a" fill="#8884d8" />
+            <Bar dataKey="CPF" stackId="a" fill="#82ca9d" />
+            <Bar dataKey="Tax" stackId="a" fill="#12313a" />
         </BarChart>
       </ResponsiveContainer>
 </>
