@@ -32,7 +32,7 @@ export default function Banner() {
         fontWeight="700"
         lineHeight={{ base: '32px', md: '42px' }}
       >
-        Utilize & Build Web3 Functions and get awarded
+        Utilize & Build Web3 Functions and get rewarded
       </Text>
       <Text
         fontSize="md"
@@ -49,7 +49,7 @@ export default function Banner() {
         mb="40px"
         lineHeight="28px"
       >
-        Best decentrailied Digi solutions - Access basic and standard functions for free and earn token. 
+        Best decentrailied quick Digi solutons - Access basic and standard functions for free and earn token. Pay tokens to enjoy premium services.
       </Text>
       <Flex align="center">
         <Button

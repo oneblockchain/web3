@@ -88,7 +88,7 @@ export default function Marketplace() {
                   href={''}
                   color={textColorBrand}
                   me={{ base: '34px', md: '44px' }}>
-                  AI
+                  AI Assitant
                 </Link>
                 <Link
                   color={textColorBrand}
@@ -96,7 +96,7 @@ export default function Marketplace() {
                   me={{ base: '34px', md: '44px' }}
                   href="/admin/nfts#collectibles"
                 >
-                  Useful Tooks
+                  Web Tool
                 </Link>
                 <Link color={textColorBrand} fontWeight="500" href="/admin/nfts#sports">
                   Small Business
@@ -152,7 +152,7 @@ export default function Marketplace() {
             >
               <NFT
                 name="URL2QR"
-                author="By Peter Will"
+                author="By zzz"
                 bidders={[
                   Avatar1,
                   Avatar2,
@@ -162,8 +162,8 @@ export default function Marketplace() {
                 download="#"
               />
               <NFT
-                name="Image"
-                author="By Mark Benjamin"
+                name="PNQ2SVG"
+                author="By xxx"
                 bidders={[
                   Avatar3,
                   Avatar4,
@@ -173,8 +173,8 @@ export default function Marketplace() {
                 download="#"
               />
               <NFT
-                name="3D Cubes Art"
-                author="By Manny Gates"
+                name="AiResume"
+                author="By yyy"
                 bidders={[
                   Avatar3,
                   Avatar4,

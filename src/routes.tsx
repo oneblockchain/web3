@@ -8,7 +8,10 @@ import {
   MdMenuBook,
   MdOutlineShoppingCart,
   MdOutlineContactMail,
+  MdBusiness,
 } from 'react-icons/md';
+import { IconMoodDollar, IconRobot, IconTools, IconHealthRecognition } from '@tabler/icons-react';
+import { RxMagicWand } from "react-icons/rx";
 
 // Auth Imports
 import { IRoute } from 'types/navigation';
@@ -24,7 +27,7 @@ const routes: IRoute[] = [
   },
   // --- dFuns ---
   {
-    name: 'dFunctions',
+    name: 'dFuns Collections',
     path: '/dfuns',
     icon: (
       <Icon
@@ -37,23 +40,188 @@ const routes: IRoute[] = [
     collapse: true,
     items: [
       {
-        name: 'CPFCal',
+        name: 'Personal Finance',
         layout: '/dfuns',
         path: '/cpfcal',
+        icon: <Icon as={IconMoodDollar} width='20px' height='20px' color='inherit' />,
         secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'CPF',
+            layout: '/dfuns',
+            path: '/cpfcal',
+            secondary: true,
+          },
+          {
+            name: 'IncomeTax',
+            layout: '/dfuns',
+            path: '/sgtax',
+            secondary: true,
+          },
+          {
+            name: 'JobOffer',
+            layout: '/dfuns',
+            path: '/offerc',
+            secondary: true,
+          },
+          {
+            name: 'Property',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'Loans',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'Retirement',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'Savings',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'Insurance',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'Invest',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+        ]
       },
       {
-        name: 'SGTax',
+        name: 'Living&Health',
         layout: '/dfuns',
-        path: '/sgtax',
+        path: '/',
+        icon: <Icon as={IconHealthRecognition} width='20px' height='20px' color='inherit' />,
         secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'BabyBonus',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'Budget2023',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'LifePlanner',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+        ]
       },
       {
-        name: 'OfferC',
+        name: 'AI Assistant',
         layout: '/dfuns',
-        path: '/offerc',
+        path: '/',
+        icon: <Icon as={IconRobot} width='20px' height='20px' color='inherit' />,
         secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'AiArtNFT',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'AiSpeech',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'AiResume',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+        ]
       },
+      {
+        name: 'Web Tools',
+        layout: '/dfuns',
+        path: '/',
+        icon: <Icon as={IconTools} width='20px' height='20px' color='inherit' />,
+        secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'WebQR',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'ImageEditor',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'ShortURL',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+        ]
+      },
+      {
+        name: 'Small Business',
+        layout: '/dfuns',
+        path: '/',
+        icon: <Icon as={MdBusiness} width='20px' height='20px' color='inherit' />,
+        secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'RegisterCompany',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'QuickAccounting',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'HiringCost',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+        ]
+      },
+      {
+        name: 'Use Your Imagination',
+        layout: '/dfuns',
+        path: '/',
+        icon: <Icon as={RxMagicWand} width='20px' height='20px' color='inherit' />,
+        secondary: true,
+  },
     ],
   },
 // Dev Portal
