@@ -31,6 +31,23 @@ export default function AdminNavbar(props: {
     };
   });
 
+/*   // auto hide nav bar - not working yet
+  const [showNavbar, setShowNavbar] = useState(true);
+
+  useEffect(() => {
+    let prevScrollPos = window.pageYOffset;
+
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const visible = prevScrollPos > currentScrollPos || currentScrollPos < 2;
+      setShowNavbar(visible);
+      prevScrollPos = currentScrollPos;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []); */
+
   const { secondary, brandText } = props;
 
   // Here are all the props that may change depending on navbar's type or state.(secondary, variant, scrolled)
@@ -51,8 +68,10 @@ export default function AdminNavbar(props: {
   const changeNavbar = () => {
     if (isWindowAvailable() && window.scrollY > 1) {
       setScrolled(true);
+  //    setShowNavbar(true);
     } else {
       setScrolled(false);
+  //   setShowNavbar(false);
     }
   };
 
