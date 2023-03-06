@@ -124,11 +124,16 @@ const Connected = () => {
   let increase_aftax = income_aftax_offer1 - income_aftax;
   let per_b4tax = Math.round((increase_b4tax / income_b4tax) * 100)
   let per_aftax = Math.round((increase_aftax / income_aftax) * 100)
-  // TAC
+  // TAC = salary + bonus + emp CPF
   let tac_b4tax = income_b4tax + (year_tot * 17 / 37)
   let tac_b4tax_offer1 = income_b4tax_offer1 + (year_tot_offer1 * 17 / 37)
   let increase_tac_b4tax = tac_b4tax_offer1 - tac_b4tax
   let per_tac_b4tax = Math.round((increase_tac_b4tax / tac_b4tax) * 100)
+  // TAC after tax
+  let tac_aftax = income_aftax + (year_tot * 17 / 37)
+  let tac_aftax_offer1 = income_aftax_offer1 + (year_tot_offer1 * 17 / 37)
+  let increase_tac_aftax = tac_aftax_offer1 - tac_aftax
+  let per_tac_aftax = Math.round((increase_tac_aftax / tac_aftax) * 100)
 
 // bar chart
 const data = [
@@ -145,8 +150,8 @@ const data = [
 ];
 // stacked bar chart
 const dataS = [
-  { name: 'Current', AfterTax: income_aftax, CPF: year_tot, Tax: tax },
-  { name: 'New Offer', AfterTax: income_aftax_offer1, CPF: year_tot_offer1, Tax: tax_offer1 },
+  { name: 'Current', AfterTaxCash: income_aftax, CPF: year_tot, Tax: tax },
+  { name: 'New Offer', AfterTaxCash: income_aftax_offer1, CPF: year_tot_offer1, Tax: tax_offer1 },
 
 ];
 
@@ -236,9 +241,10 @@ const dataS = [
       <Text>New Offer Annual Income Before/After tax: {formatCurrency(income_b4tax_offer1)} / {formatCurrency(income_aftax_offer1)}</Text>
       <Text>Income Increment Before/After tax: {formatCurrency(increase_b4tax)} ({per_b4tax}%) / {formatCurrency(increase_aftax)} ({per_aftax}%)</Text>
       <Text mb={2}>Total Annual CPF Current/New Offer: {formatCurrency(year_tot)} / {formatCurrency(year_tot_offer1)}</Text>
-      <Text mb={1}>Total Annual Compensation (Base+Bonus+Employer CPF): </Text>
+      <Text mb={2}>Total Annual Compensation (Base+Bonus+Employer CPF): </Text>
       <Text > Before Tax - Current/New Offer: {formatCurrency(tac_b4tax)} / {formatCurrency(tac_b4tax_offer1)} ({per_tac_b4tax}%)</Text>
-   
+      <Text > After Tax - Current/New Offer: {formatCurrency(tac_aftax)} / {formatCurrency(tac_aftax_offer1)} ({per_tac_aftax}%)</Text>
+ 
 {/*       <Button
         bgColor="violet"
         onClick={handleClick}
@@ -268,7 +274,7 @@ const dataS = [
             <Tooltip />
             <Legend />
             <YAxis />
-            <Bar dataKey="AfterTax" stackId="a" fill="#8884d8" />
+            <Bar dataKey="AfterTaxCash" stackId="a" fill="#8884d8" />
             <Bar dataKey="CPF" stackId="a" fill="#82ca9d" />
             <Bar dataKey="Tax" stackId="a" fill="#12313a" />
         </BarChart>
