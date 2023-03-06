@@ -6,7 +6,9 @@ import {
 } from "@solana/wallet-adapter-react"
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui"
 import { clusterApiUrl } from "@solana/web3.js"
-import { PhantomWalletAdapter, SolflareWalletAdapter, MathWalletAdapter, ExodusWalletAdapter } from "@solana/wallet-adapter-wallets"
+//import { PhantomWalletAdapter, SolflareWalletAdapter, MathWalletAdapter, ExodusWalletAdapter } from "@solana/wallet-adapter-wallets"
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
+import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import { useMemo } from "react"
 require("@solana/wallet-adapter-react-ui/styles.css")
 
@@ -14,12 +16,12 @@ const WalletContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const url = useMemo(() => clusterApiUrl("devnet"), [])
   const phantom = new PhantomWalletAdapter()
   const solflare = new SolflareWalletAdapter()
-  const mathwallet = new MathWalletAdapter()
-  const exodus = new ExodusWalletAdapter()
+/*   const mathwallet = new MathWalletAdapter()
+  const exodus = new ExodusWalletAdapter() */
 
   return (
     <ConnectionProvider endpoint={url}>
-      <WalletProvider wallets={[phantom, solflare, mathwallet, exodus]}>
+      <WalletProvider wallets={[phantom, solflare]}>
         <WalletModalProvider>{children}</WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
