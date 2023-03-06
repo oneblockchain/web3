@@ -12,12 +12,12 @@ import {
   Text,
   Box,
   Stack,
+  Select,
 } from "@chakra-ui/react"
 import { Chart } from "react-google-charts";
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
-import Link from 'components/link/Link';
 
 interface ICpfContributions {
   cpf_oa: number;
@@ -27,10 +27,11 @@ interface ICpfContributions {
   cpf_self: number;
   cpf_tot: number;
   year_tot: number;
+  ceiling: number;
 }
 
-function calculateCpfContributions(salary: number, age: number, bonus: number): ICpfContributions {
-  let basicSalary = Math.min(salary, 6000);
+function calculateCpfContributions(salary: number, age: number, bonus: number, ceiling: number): ICpfContributions {
+  let basicSalary = Math.min(salary, ceiling); 
   let cpf_oa = 0.0;
   let cpf_sa = 0.0;
   let cpf_ma = 0.0;
@@ -38,7 +39,7 @@ function calculateCpfContributions(salary: number, age: number, bonus: number): 
   let rate_self = 0.20;
   let cpf_emp, cpf_self, cpf_tot;
   let year_cpf_emp, year_cpf_self, year_tot;
-
+  
   if (age <= 35) {
     cpf_oa = basicSalary * 0.23;
     cpf_sa = basicSalary * 0.07;
@@ -82,7 +83,7 @@ function calculateCpfContributions(salary: number, age: number, bonus: number): 
     year_cpf_self = cpf_self * 12 + bonus * rate_self
     year_tot = Math.min((year_cpf_emp + year_cpf_self),37740)
 
-  return { cpf_oa, cpf_sa, cpf_ma, cpf_emp, cpf_self, cpf_tot, year_tot };
+  return { cpf_oa, cpf_sa, cpf_ma, cpf_emp, cpf_self, cpf_tot, year_tot, ceiling };
 }
 
 const Connected: FC = () => {
@@ -90,9 +91,10 @@ const Connected: FC = () => {
   const modalState = useWalletModal()
   const { wallet, connect } = useWallet()
 
-  const [salary, setSalary] = useState<number>(5000);
+  const [salary, setSalary] = useState<number>(6600);
   const [age, setAge] = useState<number>(25);
   const [bonus, setBonus] = useState<number>(10000);
+  const [ceiling, setCeiling] = useState<number>(6300);
   const [cpfAmount, setCpfAmount] = useState(0);
   const [YearCpfAmount, setYearCpfAmount] = useState(0);
   const [cpf_oa, setcpf_oa] = useState(0);
@@ -108,6 +110,7 @@ const Connected: FC = () => {
     cpf_self: 0,
     cpf_tot: 0,
     year_tot: 0,
+    ceiling: 6000,
   });
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
@@ -128,21 +131,11 @@ const Connected: FC = () => {
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
-    const newCpfContributions = calculateCpfContributions(salary, age, bonus);
+    const newCpfContributions = calculateCpfContributions(salary, age, bonus, ceiling);
     setCpfContributions(newCpfContributions);
   }
 
-  // 2 level pie chart
-  const data01 = [
-    { name: 'By Employer', value: cpfContributions.cpf_emp },
-    { name: 'By Yourself', value: cpfContributions.cpf_self },
-  ];
-  const data02 = [
-    { name: 'OA', value: cpfContributions.cpf_oa },
-    { name: 'MA', value: cpfContributions.cpf_ma },
-    { name: 'SA', value: cpfContributions.cpf_sa },
-
-  ];
+  // pie chart
  const data = [
     ["CPF Account", "Month Amount"],
     ["OA", cpfContributions.cpf_oa],
@@ -163,7 +156,7 @@ const Connected: FC = () => {
           noOfLines={3}
           textAlign="center"
         >
-          Calculate your monthly CPF contribution (standard ver1.0)
+          Calculate your monthly CPF contribution (Premium ver1.0)
         </Heading>
         <VStack as="form" onClick={handleSubmit} spacing={1} width="100%" maxW="399px">
           <FormControl id="salary">
@@ -178,13 +171,24 @@ const Connected: FC = () => {
             <FormLabel>Age:</FormLabel>
             <Input type="number" value={age} onChange={(event) => setAge(parseInt(event.target.value))} />
           </FormControl>
+          <FormControl id="ceiling">
+            <FormLabel>Salary Ceiling:</FormLabel>
+            <Select placeholder="Select increased ceiling" value={ceiling} onChange={(event) => setCeiling(parseInt(event.target.value))}>
+              <option value="6000">Before 1 September 2023 $6000</option>
+              <option value="6300">From 1 September 2023 $6300</option>
+              <option value="6800">From 1 January 2024 $6800</option>
+              <option value="7400">From 1 January 2025 $7400</option>
+              <option value="8000">From 1 January 2026 $8000</option>
+            </Select>
+          </FormControl>
+
           {/*    <Button type="submit">Calculate CPF Contributions</Button> */}
           <Button
             bgColor="teal"
             onClick={handleSubmit}
           >
             <HStack>
-              <Text>Calculate CPF Contributions & Mint Token</Text>
+              <Text>Calculate CPF Contributions</Text>
             </HStack>
           </Button>
         </VStack>
@@ -199,11 +203,6 @@ const Connected: FC = () => {
             <Text>Yearly CPF total: ${cpfContributions.year_tot.toFixed(2)}</Text>
           </VStack>
         )}
-
-      <Link href="/dfuns/cpfcalP">
-        <Button bgColor="violet" as="a">Pay 2 tokens to see more</Button>
-      </Link>
-
 {/*         <Button
           bgColor="violet"
           onClick={handleClick}
@@ -213,7 +212,6 @@ const Connected: FC = () => {
             <ArrowForwardIcon />
           </HStack>
         </Button> */}
-
       </VStack>
     </Container>
       <Chart
