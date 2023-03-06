@@ -84,7 +84,7 @@ export default function NFT(props: {
             me={{ base: '4px', md: '32px', xl: '10px', '3xl': '32px' }}
             align="center"
           >
-            <Icon as={IconCurrencySolana} color={textColor} width="9px" me="7px" />
+            <Icon as={IconCurrencySolana} color={textColor} width="20px" me="7px" />
             <Text fontWeight="700" fontSize="md" color={textColor}>
               {price}
             </Text>
