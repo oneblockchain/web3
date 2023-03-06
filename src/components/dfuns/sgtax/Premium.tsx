@@ -5,7 +5,6 @@ import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { Chart } from "react-google-charts";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
-import Link from "next/link"
 
 const Connected: FC = () => {
   const [salary, setSalary] = useState<number>(10000);
@@ -17,8 +16,10 @@ const Connected: FC = () => {
   const [tax_saved, setTax_saved] = useState<number>(0);
   const [tax_rebate, setTax_rebate] = useState<number>(0);
   const [tax_percent, setTax_percent] = useState<number>(0); 
+  const [tax_percent_afterTopup, setTax_percent_afterTopup] = useState<number>(0); 
   const [cpf_year, setCpf_year] = useState<number>(0); 
   const [cpf_topup, setCpf_topup] = useState<number>(5000); 
+  const [srs_topup, setSrs_topup] = useState<number>(1000); 
   const [cash_inhand, setCash_inhand] = useState<number>(0); 
 
   const modalState = useWalletModal()
@@ -27,10 +28,11 @@ const Connected: FC = () => {
   //chart
   const data = [
     ["Annual", "Amount"],
-    ["CPF contributed by All", cpf_year],
-    ["Tax Paid", tax],
+    ["CPF contributed by self & employer", cpf_year],
+    ["CPF Cash Topop", cpf_topup],
+    ["SRS Cash Topop", srs_topup],
+    ["Tax Paid", tax_afterCpfTopup],
     ["Cash In Hand", cash_inhand],
-
   ];
   const options = {
     title: "Annual Income",
@@ -41,11 +43,12 @@ const Connected: FC = () => {
     let annualSalary = salary * 12;
     let annualBonus = bonus;
     let chargeableIncome = annualSalary + annualBonus - relief;
-    let chargeableIncome_afterCpfTopup = annualSalary + annualBonus - relief - cpf_topup;
+    let chargeableIncome_afterCpfTopup = annualSalary + annualBonus - relief - cpf_topup - srs_topup;
     let taxAmount = 0;
     let taxAmount_afterCpfTopup = 0;
     let taxSaved = 0;
     let taxPercent = 0;
+    let taxPercent_afterTopup = 0;
     let cpf_month = Math.min(salary, 6000) * 0.37;
     let cpf_bonus = bonus * 0.37;
     let cpf_year  = Math.min((cpf_month * 12 + cpf_bonus),37740)
@@ -98,10 +101,12 @@ const Connected: FC = () => {
     taxAmount_afterCpfTopup = Math.max((taxAmount_afterCpfTopup - tax_rebate),0)
     taxSaved = taxAmount - taxAmount_afterCpfTopup
     taxPercent = Math.round((taxAmount / (annualSalary + annualBonus)) * 100)
-    cashInHand = annualSalary + annualBonus - taxAmount - (cpf_year * 20 /37)
+    taxPercent_afterTopup = Math.round((taxAmount_afterCpfTopup / (annualSalary + annualBonus)) * 100)
+    cashInHand = annualSalary + annualBonus - taxAmount - (cpf_year * 20 /37) - cpf_topup - srs_topup
     setIncome(chargeableIncome);
     setTax(taxAmount);
     setTax_percent(taxPercent)
+    setTax_percent_afterTopup(taxPercent_afterTopup)
     setCpf_year(cpf_year)
     setTax_afterCpfTopup(taxAmount_afterCpfTopup)
     setTax_saved(taxSaved)
@@ -128,6 +133,10 @@ const Connected: FC = () => {
     setCpf_topup(Number(event.target.value));
   };
 
+  const handleSrsChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSrs_topup(Number(event.target.value));
+  };
+
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
       if (event.defaultPrevented) {
@@ -150,7 +159,7 @@ const Connected: FC = () => {
   return (
     <><Container maxW="md" centerContent>
       <Text fontSize="xl" mb={1}>Singapore Income Tax Estimator</Text>
-      <Text fontSize="l" mb={2}>FY2023 standard ver1.0</Text>
+      <Text fontSize="l" mb={2}>FY2023 Premium ver1.0</Text>
       <Text textAlign="left"
         w="100%"
         maxW="md"
@@ -197,25 +206,28 @@ const Connected: FC = () => {
         maxW="md"
         px={4}
         py={1}
+        borderRadius="md">Enter SRS Top up (Max $15,300 for residents):</Text>
+      <Input type="number" placeholder="Enter srs relief" value={srs_topup} onChange={handleSrsChange} mb={1} />
+      <Text textAlign="left"
+        w="100%"
+        maxW="md"
+        px={4}
+        py={1}
         borderRadius="md">Enter Total Tax Rebate (eg. Parenthood Tax Rebate $5000-20000 per child):</Text>
       <Input type="number" placeholder="Enter tax rebate" value={tax_rebate} onChange={handleRebateChange} mb={2} />
 
-      <Button colorScheme="teal" onClick={calculateTax} mb={4}>Calculate Tax and Mint Token</Button>
+      <Button colorScheme="teal" onClick={calculateTax} mb={4}>Calculate Tax and see income composition</Button>
 
       <Text textAlign="left" w="100%">Annual Chargeable Income: {formatCurrency(income)}</Text>
       <Text textAlign="left" w="100%">Annual CPF Contributed: {formatCurrency(cpf_year)}</Text>
-      <Text textAlign="left" w="100%">Estimated Income Tax Payable Before CPF cash Topup: {formatCurrency(tax)} with actual tax rate {tax_percent}%</Text>
-      <Text textAlign="left" w="100%">Do you know, if you top up cash ${cpf_topup} to your or/and family CPF SA/RA you can save $ {tax_saved} tax</Text>
-
-      <Link href="/dfuns/sgtaxP">
-        <Button bgColor="violet" as="a">Pay 2 tokens to see detail income composition <ArrowForwardIcon /></Button>
-      </Link>
+      <Text textAlign="left" w="100%">Estimated Income Tax Payable Before/After CPF&SRS cash Topup: {formatCurrency(tax)} / {formatCurrency(tax_afterCpfTopup)} with actual tax rate {tax_percent}% / {tax_percent_afterTopup}%</Text>
+      <Text textAlign="left" w="100%">Do you know, if you top up cash $({cpf_topup} + {srs_topup}) to CPF and SRS, you can save $ {tax_saved} tax</Text>
 
 {/*       <Button
         bgColor="violet"
         onClick={handleClick}
       >
-        <Text>Pay 2 tokens to see detail income composition </Text>
+        <Text>Pay 2 tokens to view more</Text>
         <ArrowForwardIcon />
       </Button> */}
 
