@@ -133,7 +133,7 @@ const Connected: FC = () => {
     setCpf_topup(Number(event.target.value));
   };
 
-  const handleSrsChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSrsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSrs_topup(Number(event.target.value));
   };
 
