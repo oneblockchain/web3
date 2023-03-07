@@ -27,13 +27,14 @@ const Connected: FC = () => {
   //chart
   const data = [
     ["Annual", "Amount"],
-    ["CPF contributed by All", cpf_year],
+    ["CPF contributed by self & employer", cpf_year],
     ["Tax Paid", tax],
     ["Cash In Hand", cash_inhand],
 
   ];
   const options = {
     title: "Annual Income",
+    sliceVisibilityThreshold: 0.005,
   };
 
 
@@ -200,12 +201,12 @@ const Connected: FC = () => {
         borderRadius="md">Enter Total Tax Rebate (eg. Parenthood Tax Rebate $5000-20000 per child):</Text>
       <Input type="number" placeholder="Enter tax rebate" value={tax_rebate} onChange={handleRebateChange} mb={2} />
 
-      <Button colorScheme="teal" onClick={calculateTax} mb={4}>Calculate Tax and Mint Token</Button>
+      <Button colorScheme="teal" onClick={calculateTax} mb={2}>Calculate Tax and Mint Token</Button>
 
       <Text textAlign="left" w="100%">Annual Chargeable Income: {formatCurrency(income)}</Text>
       <Text textAlign="left" w="100%">Annual CPF Contributed: {formatCurrency(cpf_year)}</Text>
       <Text textAlign="left" w="100%">Estimated Income Tax Payable Before CPF cash Topup: {formatCurrency(tax)} with actual tax rate {tax_percent}%</Text>
-      <Text textAlign="left" w="100%">Do you know, if you top up cash ${cpf_topup} to your or/and family CPF SA/RA you can save $ {tax_saved} tax</Text>
+      <Text textAlign="left" w="100%" mb={2}>Do you know, if you top up cash ${cpf_topup} to your or/and family CPF SA/RA you can save $ {tax_saved} tax</Text>
 
       <Link href="/dfuns/sgtaxP">
         <Button bgColor="violet" as="a">Pay 2 tokens to see detail income composition <ArrowForwardIcon /></Button>
