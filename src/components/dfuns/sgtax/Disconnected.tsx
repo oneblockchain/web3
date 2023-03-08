@@ -16,7 +16,7 @@ const Disconnected = () => {
   const modalState = useWalletModal()
   const { wallet, connect } = useWallet()
 
-  const calculateTax = () => {
+  const calculateTax = (async () => {
     let annualSalary = salary * 12;
     let annualBonus = bonus;
     let chargeableIncome = annualSalary + annualBonus - relief;
@@ -48,7 +48,16 @@ const Disconnected = () => {
 
     setIncome(chargeableIncome);
     setTax(taxAmount);
-  };
+
+    // add mint token function
+    try {
+      await MintToken();
+    // Token minting was successful, do something here
+    } catch (error) {
+    // Token minting failed, handle the error here
+      console.error(error);
+    }  
+  });
 
   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSalary(Number(event.target.value));

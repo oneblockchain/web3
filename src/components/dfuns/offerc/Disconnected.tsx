@@ -4,6 +4,7 @@ import { Container, Input, Button, Text } from '@chakra-ui/react';
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
+import MintToken from "components/dfuns/token/mint"
 
 const Disconnected = () => {
   const [salary, setSalary] = useState<number>(10000);
@@ -21,7 +22,7 @@ const Disconnected = () => {
   const modalState = useWalletModal()
   const { wallet, connect } = useWallet()
 
-  const calculateTax = () => {
+  const calculateTax = (async () => {
     let annualSalary = salary * 12;
     let annualSalaryOffer1 = salary_offer1 * 12;
     let annualBonus = bonus;
@@ -92,7 +93,16 @@ const Disconnected = () => {
     setIncome_b4tax_offer1(incomeB4taxOffer1);
     setIncome_aftax_offer1(incomeAftaxOffer1)
     setTax_offer1(taxAmountOffer1);
-  };
+
+    // add mint token function
+    try {
+      await MintToken();
+      // Token minting was successful, do something here
+    } catch (error) {
+      // Token minting failed, handle the error here
+      console.error(error);
+    }    
+  });
 
   let increase_b4tax = income_b4tax_offer1 - income_b4tax;
   let increase_aftax = income_aftax_offer1 - income_aftax;
@@ -132,6 +142,19 @@ const Disconnected = () => {
     [wallet, connect, modalState]
   )
 
+  async function handleMint(event: React.MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+
+  // add mint token function
+    try {
+      await MintToken();
+  // Token minting was successful, do something here
+    } catch (error) {
+  // Token minting failed, handle the error here
+      console.error(error);
+    }
+  }
+  
   function formatCurrency(num: number): string {
     return new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD' }).format(num).replace(/\.\d{2}/, '');
   }

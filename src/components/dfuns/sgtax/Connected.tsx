@@ -40,7 +40,7 @@ const Connected: FC = () => {
   };
 
 
-  const calculateTax = () => {
+  const calculateTax = (async () => {
     let annualSalary = salary * 12;
     let annualBonus = bonus;
     let chargeableIncome = annualSalary + annualBonus - relief;
@@ -109,7 +109,16 @@ const Connected: FC = () => {
     setTax_afterCpfTopup(taxAmount_afterCpfTopup)
     setTax_saved(taxSaved)
     setCash_inhand(cashInHand)
-  };
+
+    // add mint token function
+    try {
+      await MintToken();
+    // Token minting was successful, do something here
+    } catch (error) {
+    // Token minting failed, handle the error here
+      console.error(error);
+    }  
+  });
 
   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSalary(Number(event.target.value));

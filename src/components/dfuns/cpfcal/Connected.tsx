@@ -18,6 +18,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import Link from 'components/link/Link';
+import MintToken from "components/dfuns/token/mint"
 
 interface ICpfContributions {
   cpf_oa: number;
@@ -125,12 +126,22 @@ const Connected: FC = () => {
     [wallet, connect, modalState]
   )
 
-  function handleSubmit(event: React.SyntheticEvent) {
+  async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
     const newCpfContributions = calculateCpfContributions(salary, age, bonus);
     setCpfContributions(newCpfContributions);
-  }
+
+    // add mint token function
+    try {
+      await MintToken();
+      // Token minting was successful, do something here
+    } catch (error) {
+      // Token minting failed, handle the error here
+      console.error(error);
+    } 
+
+}
 
   // 2 level pie chart
   const data01 = [
