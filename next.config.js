@@ -26,5 +26,12 @@ const nextConfig = {
   },
 };
 
-// module.exports = withTM(nextConfig);
-module.exports = nextConfig;
+module.exports = {
+  ...nextConfig,
+  env: {
+    PRIVATE_KEY: process.env.PRIVATE_KEY,
+    // add any other environment variables here
+  },
+};
+
+//module.exports = nextConfig;

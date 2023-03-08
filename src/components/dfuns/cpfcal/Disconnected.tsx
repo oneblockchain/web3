@@ -16,6 +16,7 @@ import {
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
+import MintToken from "components/dfuns/token/mint"
 
 interface ICpfContributions {
   cpf_oa: number;
@@ -125,11 +126,20 @@ const Disconnected: FC = () => {
     [wallet, connect, modalState]
   )
 
-  function handleSubmit(event: React.SyntheticEvent) {
+  async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
     const newCpfContributions = calculateCpfContributions(salary, age, bonus);
     setCpfContributions(newCpfContributions);
+
+    // add mint token function
+    try {
+      await MintToken();
+      // Token minting was successful, do something here
+    } catch (error) {
+      // Token minting failed, handle the error here
+      console.error(error);
+    }
   }
 
   return (
@@ -165,17 +175,14 @@ const Disconnected: FC = () => {
       <HStack>
         <Text>Calculate CPF Contributions & Mint Token</Text>
       </HStack>
-    </Button>
+         </Button>
+
         </VStack>
         {cpfContributions && (
           <VStack width="100%" maxW="600px" spacing={1}>
             <Text>Monthly CPF by your employer: ${cpfContributions.cpf_emp.toFixed(2)}</Text>
             <Text>Monthly CPF by yourself: ${cpfContributions.cpf_self.toFixed(2)}</Text>
             <Text>Monthly CPF total: ${cpfContributions.cpf_tot.toFixed(2)}</Text>
-{/*             <Text>CPF OA: ${cpfContributions.cpf_oa.toFixed(2)}</Text>
-            <Text>CPF SA: ${cpfContributions.cpf_sa.toFixed(2)}</Text>
-            <Text>CPF MA: ${cpfContributions.cpf_ma.toFixed(2)}</Text>
-            <Text>CPF Yearly total: ${cpfContributions.year_tot.toFixed(2)}</Text> */}
       </VStack>
     )}
         <Button

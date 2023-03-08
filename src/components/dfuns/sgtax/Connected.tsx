@@ -6,6 +6,8 @@ import { Chart } from "react-google-charts";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import Link from "next/link"
+import MintToken from "components/dfuns/token/mint"
+
 
 const Connected: FC = () => {
   const [salary, setSalary] = useState<number>(10000);
