@@ -70,8 +70,6 @@ function SendToken() {
       )
     );
 
-    console.log(`transaction: ${transaction}`); 
-
     const signature = await sendTransaction(transaction, connection);
 
     // Wait for the transaction to be confirmed
