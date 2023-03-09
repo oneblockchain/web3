@@ -7,6 +7,26 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Responsive
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
+// send tokan and route to new page
+import { Connection, PublicKey, Transaction, clusterApiUrl } from "@solana/web3.js";
+import { TOKEN_PROGRAM_ID, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { useRouter } from 'next/navigation'
+
+export async function findAssociatedTokenAddress(
+  walletAddress: PublicKey,
+  tokenMintAddress: PublicKey,
+): Promise<PublicKey> {
+  return (
+    await PublicKey.findProgramAddressSync(
+      [
+        walletAddress.toBuffer(),
+        TOKEN_PROGRAM_ID.toBuffer(),
+        tokenMintAddress.toBuffer(),
+      ],
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+    )
+  )[0];
+}
 
 const Connected = () => {
   const [salary, setSalary] = useState<number>(10000);
@@ -22,7 +42,63 @@ const Connected = () => {
   const [tax_offer1, setTax_offer1] = useState<number>(0);
 
   const modalState = useWalletModal()
-  const { wallet, connect } = useWallet()
+  // send token 
+  const { wallet, connect,  publicKey, sendTransaction  } = useWallet()
+  const payer = publicKey ? publicKey.toBase58() : null;
+  console.log("PublicKey:", payer)
+  const tokenAmount = 3000000000;
+
+  //route to new premium page
+  let router= useRouter()
+
+  function redirect() {
+    router.push('/dfuns/sgtaxP')
+  }
+
+  // send token function
+  async function sendToken() {
+    // Make sure the user is connected to a wallet
+    if (!publicKey) return;
+
+    // Connect to the Solana network
+    const connection = new Connection(clusterApiUrl("devnet"))
+
+    // Define the from and to token associate account
+    const toTokenAccountPubkey = new PublicKey("AZBBr2Kfu91A2JZh7QEQDnnJeTtR5981xvf2vAueE5gb");
+
+    // Specify the wallet address and token mint address  
+    const tokenMintAddress = new PublicKey('J31G8vtGg2PeUtC24vriLQ6cUME7bdopJYiafhobR73d');
+
+    //    const walletAddress = publicKey;
+
+    console.log(`walletAddress: ${publicKey}`); 
+
+    // Call the findAssociatedTokenAddress function
+    const associatedTokenAddress = await findAssociatedTokenAddress(
+      publicKey,
+      tokenMintAddress
+    );
+    console.log(`Associated Token Address: ${associatedTokenAddress.toBase58()}`); 
+  
+    const transaction = new Transaction().add(
+      createTransferInstruction(
+        associatedTokenAddress,
+        toTokenAccountPubkey,
+        publicKey,
+        tokenAmount,
+        [],
+        TOKEN_PROGRAM_ID
+      )
+    );
+
+    console.log(`transaction: ${transaction}`); 
+
+    const signature = await sendTransaction(transaction, connection);
+
+    // Wait for the transaction to be confirmed
+    await connection.confirmTransaction(signature, "confirmed");
+    console.log(`Solscan URL: https://solscan.io/tx/${signature}?cluster=devnet`);
+  }
 
   const calculateTax = (async () => {
     let annualSalary = salary * 12;
@@ -160,6 +236,19 @@ const data = [
     },
     [wallet, connect, modalState]
   )
+ //  send token handler
+  async function handleSend() {
+      try {
+        await sendToken();
+    
+        console.log(`Payment sucessful, now rediceting...`); 
+        // Token transfer was successful, redirect to the '/dfuns/xxxxxxP' URL
+        redirect();
+    
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
   function formatCurrency(num: number): string {
     return new Intl.NumberFormat('en-SG', { style: 'currency', currency: 'SGD' }).format(num).replace(/\.\d{2}/, '');
@@ -211,17 +300,11 @@ const data = [
       <Text>New Offer Annual Income Before/After tax: {formatCurrency(income_b4tax_offer1)} / {formatCurrency(income_aftax_offer1)}</Text>
       <Text mb={4}>Income Increment Before/After tax: {formatCurrency(increase_b4tax)} ({per_b4tax}%) / {formatCurrency(increase_aftax)} ({per_aftax}%)</Text>
 
-      <Link href="/dfuns/offercP">
-        <Button bgColor="violet" as="a">Pay 5 tokens to see more</Button>
-      </Link>
+      <Button onClick={handleSend}mb={2} bgColor="violet" as="a">Pay 3 tokens to see total annual compensation</Button>
 
-{/*       <Button
-        bgColor="violet"
-        onClick={handleClick}
-      >
-        <Text>Pay 2 tokens to see more</Text>
-        <ArrowForwardIcon />
-      </Button> */}
+      <Link href="/dfuns/offercP">
+        <Button bgColor="violet" as="a">Backup</Button>
+      </Link>
       
     </Container>
     <ResponsiveContainer width="100%" height={300}>
