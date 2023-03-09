@@ -19,6 +19,7 @@ import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import Link from 'components/link/Link';
 import MintToken from "components/dfuns/token/mint"
+import SendToken from "components/dfuns/token/send"
 
 interface ICpfContributions {
   cpf_oa: number;
@@ -140,8 +141,18 @@ const Connected: FC = () => {
       // Token minting failed, handle the error here
       console.error(error);
     } 
+  }
 
-}
+  async function handleSend(){
+    // add send token function
+    try {
+       SendToken();
+      // Token minting was successful, do something here
+    } catch (error) {
+      // Token minting failed, handle the error here
+      console.error(error);
+    } 
+  }
 
   // 2 level pie chart
   const data01 = [
@@ -215,6 +226,7 @@ const Connected: FC = () => {
         <Button bgColor="violet" as="a">Pay 2 tokens to see more</Button>
       </Link>
 
+      <Button onClick={handleSend} bgColor="violet" as="a">Pay 1 tokens to Preview new contribution amounts after changes of 2023</Button>
 {/*         <Button
           bgColor="violet"
           onClick={handleClick}
