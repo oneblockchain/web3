@@ -86,7 +86,7 @@ function calculateCpfContributions(salary: number, age: number, bonus: number, c
   return { cpf_oa, cpf_sa, cpf_ma, cpf_emp, cpf_self, cpf_tot, year_tot, ceiling };
 }
 
-const Connected: FC = () => {
+const Premium: FC = () => {
 
   const modalState = useWalletModal()
   const { wallet, connect } = useWallet()
@@ -224,4 +224,4 @@ const Connected: FC = () => {
     </>
   )
 }
-export default Connected
+export default Premium

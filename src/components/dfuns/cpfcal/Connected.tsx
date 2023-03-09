@@ -12,13 +12,18 @@ import {
   Text,
   Box,
   Stack,
+  Center,
 } from "@chakra-ui/react"
 import { Chart } from "react-google-charts";
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import Link from 'components/link/Link';
+// send tokan and route to new page
 import MintToken from "components/dfuns/token/mint"
+import { Connection, PublicKey, Transaction, clusterApiUrl } from "@solana/web3.js";
+import { TOKEN_PROGRAM_ID, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { useRouter } from 'next/navigation'
 
 interface ICpfContributions {
   cpf_oa: number;
@@ -86,10 +91,83 @@ function calculateCpfContributions(salary: number, age: number, bonus: number): 
   return { cpf_oa, cpf_sa, cpf_ma, cpf_emp, cpf_self, cpf_tot, year_tot };
 }
 
+export async function findAssociatedTokenAddress(
+  walletAddress: PublicKey,
+  tokenMintAddress: PublicKey,
+): Promise<PublicKey> {
+  return (
+    await PublicKey.findProgramAddressSync(
+      [
+        walletAddress.toBuffer(),
+        TOKEN_PROGRAM_ID.toBuffer(),
+        tokenMintAddress.toBuffer(),
+      ],
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+    )
+  )[0];
+}
+
 const Connected: FC = () => {
 
   const modalState = useWalletModal()
-  const { wallet, connect } = useWallet()
+  const { wallet, connect,  publicKey, sendTransaction  } = useWallet()
+  //send
+  //const { publicKey, sendTransaction } = useWallet();
+  const payer = publicKey ? publicKey.toBase58() : null;
+  console.log("PublicKey:", payer)
+  const tokenAmount = 1000000000;
+
+ //route to new premium page
+  let router= useRouter()
+
+  function redirect() {
+    router.push('/dfuns/cpfcalP')
+  }
+
+  // send token
+  async function sendToken() {
+    // Make sure the user is connected to a wallet
+    if (!publicKey) return;
+
+    // Connect to the Solana network
+    const connection = new Connection(clusterApiUrl("devnet"))
+
+    // Define the from and to token associate account
+    const toTokenAccountPubkey = new PublicKey("AZBBr2Kfu91A2JZh7QEQDnnJeTtR5981xvf2vAueE5gb");
+
+    // Specify the wallet address and token mint address  
+    const tokenMintAddress = new PublicKey('J31G8vtGg2PeUtC24vriLQ6cUME7bdopJYiafhobR73d');
+
+    //    const walletAddress = publicKey;
+
+    console.log(`walletAddress: ${publicKey}`); 
+
+    // Call the findAssociatedTokenAddress function
+    const associatedTokenAddress = await findAssociatedTokenAddress(
+      publicKey,
+      tokenMintAddress
+    );
+    console.log(`Associated Token Address: ${associatedTokenAddress.toBase58()}`); 
+  
+    const transaction = new Transaction().add(
+      createTransferInstruction(
+        associatedTokenAddress,
+        toTokenAccountPubkey,
+        publicKey,
+        tokenAmount,
+        [],
+        TOKEN_PROGRAM_ID
+      )
+    );
+
+    console.log(`transaction: ${transaction}`); 
+
+    const signature = await sendTransaction(transaction, connection);
+
+    // Wait for the transaction to be confirmed
+    await connection.confirmTransaction(signature, "confirmed");
+    console.log(`Solscan URL: https://solscan.io/tx/${signature}?cluster=devnet`);
+  }
 
   const [salary, setSalary] = useState<number>(5000);
   const [age, setAge] = useState<number>(25);
@@ -140,8 +218,21 @@ const Connected: FC = () => {
       // Token minting failed, handle the error here
       console.error(error);
     } 
+  }
 
-}
+    // add send token function
+    async function handleSend() {
+      try {
+        await sendToken();
+    
+        console.log(`Payment sucessful, now rediceting...`); 
+        // Token transfer was successful, redirect to the '/dfuns/cpfcalP' URL
+        redirect();
+    
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
   // 2 level pie chart
   const data01 = [
@@ -211,19 +302,11 @@ const Connected: FC = () => {
           </VStack>
         )}
 
-      <Link href="/dfuns/cpfcalP">
-        <Button bgColor="violet" as="a">Pay 2 tokens to see more</Button>
-      </Link>
+      <Button onClick={handleSend} bgColor="violet" as="a">Pay 1 tokens to Preview new contribution amounts after changes of 2023</Button>
 
-{/*         <Button
-          bgColor="violet"
-          onClick={handleClick}
-        >
-          <HStack>
-            <Text>Pay 2 tokens to Preview new contribution amounts after changes of 2023</Text>
-            <ArrowForwardIcon />
-          </HStack>
-        </Button> */}
+      <Link href="/dfuns/cpfcalP">
+        <Button bgColor="violet" as="a">Backup</Button>
+      </Link>
 
       </VStack>
     </Container>
