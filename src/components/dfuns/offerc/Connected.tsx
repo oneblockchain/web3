@@ -52,7 +52,7 @@ const Connected = () => {
   let router= useRouter()
 
   function redirect() {
-    router.push('/dfuns/sgtaxP')
+    router.push('/dfuns/offercP')
   }
 
   // send token function
