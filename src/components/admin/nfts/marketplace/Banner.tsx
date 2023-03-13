@@ -49,7 +49,9 @@ export default function Banner() {
         mb="40px"
         lineHeight="28px"
       >
-        Best decentrailied quick Digi solutons - Access basic and standard functions for free and earn token. Pay tokens to enjoy premium services.
+        Best decentralized & digital solution marketplace available! 
+        Access basic and standard functions for free and earn token. 
+        Pay tokens to enjoy premium functions!
       </Text>
       <Flex align="center">
         <Button

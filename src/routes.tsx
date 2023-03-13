@@ -48,19 +48,19 @@ const routes: IRoute[] = [
         collapse: true,
         items: [
           {
-            name: 'CPF',
+            name: 'SocialSecuritySG',
             layout: '/dfuns',
             path: '/cpfcal',
             secondary: true,
           },
           {
-            name: 'IncomeTax',
+            name: 'IncomeTaxSG',
             layout: '/dfuns',
             path: '/sgtax',
             secondary: true,
           },
           {
-            name: 'JobOffer',
+            name: 'JobOfferSG',
             layout: '/dfuns',
             path: '/offerc',
             secondary: true,

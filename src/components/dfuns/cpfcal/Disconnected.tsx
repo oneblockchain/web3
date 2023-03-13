@@ -145,13 +145,10 @@ const Disconnected: FC = () => {
   return (
     <Container>
       <VStack spacing={10}>
-        <Heading
-          as="h3"
-          size="2xl"
-          noOfLines={3}
-          textAlign="center"
-        >
-          Calculate your monthly CPF contribution (basic ver1.0)
+        <Heading whiteSpace="pre-wrap" textAlign="center">
+        <Text fontSize="xl">Calculate your monthly CPF contribution</Text>
+        {'\n'}
+        <Text fontSize="md"> FY2023 basic ver1.0</Text>       
         </Heading>
         <VStack as="form"  spacing={1} width="100%" maxW="399px">
           <FormControl id="salary">
