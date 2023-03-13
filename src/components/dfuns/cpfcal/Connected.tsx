@@ -304,9 +304,9 @@ const Connected: FC = () => {
 
       <Button onClick={handleSend} bgColor="violet" as="a">Pay 1 tokens to Preview new contribution amounts after changes of 2023</Button>
 
-      <Link href="/dfuns/cpfcalP">
+{/*       <Link href="/dfuns/cpfcalP">
         <Button bgColor="violet" as="a">Backup</Button>
-      </Link>
+      </Link> */}
 
       </VStack>
     </Container>

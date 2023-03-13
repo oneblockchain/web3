@@ -309,9 +309,9 @@ const Connected: FC = () => {
 
       <Button onClick={handleSend}mb={2} bgColor="violet" as="a">Pay 3 tokens to see annual income composition</Button>
 
-      <Link href="/dfuns/sgtaxP">
+{/*       <Link href="/dfuns/sgtaxP">
         <Button bgColor="violet" as="a">Backup <ArrowForwardIcon /></Button>
-      </Link>
+      </Link> */}
 
     </Container>
     <Chart

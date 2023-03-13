@@ -302,9 +302,9 @@ const data = [
 
       <Button onClick={handleSend}mb={2} bgColor="violet" as="a">Pay 3 tokens to see total annual compensation</Button>
 
-      <Link href="/dfuns/offercP">
+{/*       <Link href="/dfuns/offercP">
         <Button bgColor="violet" as="a">Backup</Button>
-      </Link>
+      </Link> */}
       
     </Container>
     <ResponsiveContainer width="100%" height={300}>
