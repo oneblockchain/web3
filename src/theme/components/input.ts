@@ -60,14 +60,28 @@ export const inputStyles = {
 			},
 
 			variants: {
-				main: () => ({
+				main: (props: any) => ({
 					field: {
-						bg: 'transparent',
+						bg: mode('transparent', 'navy.100')(props),
 						border: '1px solid',
 
 						borderColor: 'secondaryGray.100',
 						borderRadius: '16px',
-						_placeholder: { color: 'secondaryGray.600' }
+						_placeholder: { 
+							color: mode('secondaryGray.700', 'orange.100')(props),
+						  }
+					}
+				}),
+				alt: (props: any) => ({
+					field: {
+						bg: mode('secondaryGray.100', 'navy.300')(props),
+						border: '1px solid',
+
+						borderColor: 'secondaryGray.100',
+						borderRadius: '16px',
+						_placeholder: { 
+							color: mode('secondaryGray.700', 'orange.500')(props),
+						  }
 					}
 				}),
 				auth: () => ({

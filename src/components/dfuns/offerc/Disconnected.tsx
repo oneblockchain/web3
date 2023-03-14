@@ -1,6 +1,6 @@
 'use client'
 import { FC, MouseEventHandler, useCallback, useState } from "react"
-import { Container, Input, Button, Text } from '@chakra-ui/react';
+import { Container, Input, Button, Text, NumberInputField, NumberInput } from '@chakra-ui/react';
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
@@ -9,8 +9,8 @@ import MintToken from "components/dfuns/token/mint"
 const Disconnected = () => {
   const [salary, setSalary] = useState<number>(10000);
   const [bonus, setBonus] = useState<number>(20000);
-  const [salary_offer1, setSalary_salary_offer1] = useState<number>(12000);
-  const [bonus_offer1, setBonus_offer1] = useState<number>(24000);
+  const [salary_offer1, setSalary_salary_offer1] = useState<number>(13000);
+  const [bonus_offer1, setBonus_offer1] = useState<number>(26000);
   const [relief, setRelief] = useState<number>(21400);
   const [income_b4tax, setIncome_b4tax] = useState<number>(0);
   const [income_aftax, setIncome_aftax] = useState<number>(0);
@@ -107,15 +107,21 @@ const Disconnected = () => {
   let increase_b4tax = income_b4tax_offer1 - income_b4tax;
   let increase_aftax = income_aftax_offer1 - income_aftax;
 
-  const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+/*   const handleSalaryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSalary(Number(event.target.value));
+  }; */
+  const handleSalaryChange = (value) => {
+    setSalary(value); // update the salary state with the new value
   };
 
-  const handleBonusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+/*   const handleBonusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBonus(Number(event.target.value));
+  }; */
+  const handleBonusChange = (value) => {
+    setBonus(value); 
   };
 
-  const handleSalaryOffer1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
+/*   const handleSalaryOffer1Change = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSalary_salary_offer1(Number(event.target.value));
   };
 
@@ -125,6 +131,15 @@ const Disconnected = () => {
 
   const handleReliefChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRelief(Number(event.target.value));
+  }; */
+  const handleSalaryOffer1Change = (value) => {
+    setSalary_salary_offer1(value); 
+  };
+  const handleBonusOffer1Change = (value) => {
+    setBonus_offer1(value); 
+  };
+  const handleReliefChange = (value) => {
+    setRelief(value); 
   };
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
@@ -169,35 +184,50 @@ const Disconnected = () => {
         px={4}
         py={1}
         borderRadius="md">Current Monthly Salary:</Text>
-      <Input type="number" placeholder="Enter monthly salary" value={salary} onChange={handleSalaryChange} mb={1} />
+{/*       <Input type="number" placeholder="Enter monthly salary" value={salary} onChange={handleSalaryChange} mb={1} /> */}
+      <NumberInput variant="main" w="100%" value={salary} onChange={handleSalaryChange}>
+        <NumberInputField placeholder="10000"/>
+      </NumberInput>
       <Text textAlign="left"
         w="100%"
         maxW="md"
         px={4}
         py={1}
         borderRadius="md">Current Annual Bonus:</Text>
-      <Input type="number" placeholder="Enter annual bonus" value={bonus} onChange={handleBonusChange} mb={1} />
+{/*       <Input type="number" placeholder="Enter annual bonus" value={bonus} onChange={handleBonusChange} mb={1} /> */}
+      <NumberInput variant="main" w="100%" value={bonus} onChange={handleBonusChange}>
+        <NumberInputField placeholder="10000"/>
+      </NumberInput>
       <Text textAlign="left"
         w="100%"
         maxW="md"
         px={4}
         py={1}
         borderRadius="md">New Offer Monthly Salary:</Text>
-      <Input type="number" placeholder="Offer1 monthly salary" value={salary_offer1} onChange={handleSalaryOffer1Change} mb={1} />
+{/*       <Input type="number" placeholder="Offer1 monthly salary" value={salary_offer1} onChange={handleSalaryOffer1Change} mb={1} /> */}
+      <NumberInput variant="alt" w="100%" value={salary_offer1} onChange={handleSalaryOffer1Change}>
+        <NumberInputField placeholder="13000"/>
+      </NumberInput>
       <Text textAlign="left"
         w="100%"
         maxW="md"
         px={4}
         py={1}
         borderRadius="md">New Offer Annual Bonus:</Text>
-      <Input type="number" placeholder="Offer1 bonus" value={bonus_offer1} onChange={handleBonusOffer1Change} mb={1} />
+{/*       <Input type="number" placeholder="Offer1 bonus" value={bonus_offer1} onChange={handleBonusOffer1Change} mb={1} /> */}
+      <NumberInput variant="alt" w="100%" value={bonus_offer1} onChange={handleBonusOffer1Change}>
+        <NumberInputField placeholder="30000"/>
+      </NumberInput>
       <Text textAlign="left"
         w="100%"
         maxW="md"
         px={4}
         py={1}
         borderRadius="md">Enter Total Tax Relief:</Text>
-      <Input type="number" placeholder="Enter tax relief" value={relief} onChange={handleReliefChange} mb={2} />
+{/*       <Input type="number" placeholder="Enter tax relief" value={relief} onChange={handleReliefChange} mb={2} /> */}
+      <NumberInput variant="main" w="100%" value={relief} onChange={handleReliefChange} mb={2}>
+        <NumberInputField placeholder="21400"/>
+      </NumberInput>
 
       <Button colorScheme="teal" onClick={calculateTax} mb={4}>Compare Increment and Mint Token</Button>
 
