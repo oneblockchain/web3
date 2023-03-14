@@ -3,7 +3,10 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
 
 // Custom components
-import { OneLogo } from 'components/icons/Icons';
+//import { OneLogo } from 'components/icons/Icons';
+// 			<OneLogo h='26px' w='175px' my='32px' color={logoColor} /> 
+import Image from 'next/image';
+import { OneLogo } from 'components/icons/OneLogo.svg';
 import { HSeparator } from 'components/separator/Separator';
 
 export function SidebarBrand() {
@@ -12,8 +15,7 @@ export function SidebarBrand() {
 
 	return (
 		<Flex alignItems='center' flexDirection='column'>
- 			<OneLogo h='26px' w='175px' my='32px' color={logoColor} /> 
-			<HSeparator mb='20px' />
+ 			<Image src="/svg/OneLogo.svg" alt="Logo" width={256} height={188} />
 		</Flex>
 	);
 }
