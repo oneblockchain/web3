@@ -2,12 +2,12 @@
 
 export const lineChartDataSidebar = [
   {
-    name: 'Balance',
-    data: [10, 39, 80, 50, 10],
+    name: 'Minted',
+    data: [100, 99, 88, 133, 118],
   },
   {
-    name: 'Profit',
-    data: [20, 60, 30, 40, 20],
+    name: 'Paid to Creators',
+    data: [55, 66, 45, 83, 66],
   },
 ];
 

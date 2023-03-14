@@ -7,6 +7,9 @@ import {
   lineChartDataSidebar,
   lineChartOptionsSidebar,
 } from 'variables/charts';
+import TokenSupply from 'components/dfuns/token/supply';
+
+
 export default function SidebarDocs() {
   const bgColor = 'linear-gradient(135deg, #868CFF 0%, #4318FF 100%)';
 
@@ -36,7 +39,7 @@ export default function SidebarDocs() {
           textAlign="center"
           px="10px"
         >
-          8848
+         <TokenSupply mintAddress />
         </Text>
         <Text
           fontSize="sm"
