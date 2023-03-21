@@ -151,15 +151,15 @@ export default function Marketplace() {
               mb={{ base: '20px', xl: '0px' }}
             >
               <NFT
-                name="URL2QR"
-                author="By zzz"
+                name="AiAvatar"
+                author="By GPT"
                 bidders={[
                   Avatar1,
                   Avatar2,
                 ]}
                 image={Nft4}
                 currentbid="1111"
-                download="#"
+                download="/dfuns/AiAvatar"
               />
               <NFT
                 name="PNQ2SVG"

@@ -30,6 +30,7 @@ module.exports = {
   ...nextConfig,
   env: {
     PRIVATE_KEY: process.env.PRIVATE_KEY,
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
     // add any other environment variables here
   },
 };
