@@ -68,7 +68,7 @@ export default function Banner() {
         >
           Discover now
         </Button>
-        <Link href="#">
+        <Link href="https://youtu.be/KC9pMN0pToI">
           <Text color="white" fontSize="sm" fontWeight="500">
             Watch video
           </Text>
