@@ -105,7 +105,7 @@ const Connected: FC = () => {
   const handleOpenai= async () => {
     setIsLoading(true);
     try {
-      const fullPrompt = `Generate 9 interview questions for ${prompt} role and answer them`;
+      const fullPrompt = `Generate 9 interview questions for ${prompt} role.`;
       const response = await axios.post('/api/OpenAI', { prompt: fullPrompt, max_tokens: 300});
 //        console.log(response);
       const answerData = response.data.text;
@@ -180,7 +180,7 @@ const Connected: FC = () => {
         onClick={handleOpenai}
         isLoading={isLoading}
       >
-        {isLoading ? 'Generating...' : 'Generate 10 questions and Mint Token'}
+        {isLoading ? 'Generating...' : 'Generate 9 questions and Mint Token'}
       </Button>
 
       {answer && (
