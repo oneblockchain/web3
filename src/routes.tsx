@@ -104,6 +104,35 @@ const routes: IRoute[] = [
         ]
       },
       {
+        name: 'AI Assistant',
+        layout: '/dfuns',
+        path: '/',
+        icon: <Icon as={IconRobot} width='20px' height='20px' color='inherit' />,
+        secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'AiAvatar',
+            layout: '/dfuns',
+            path: '/AiAvatar',
+            secondary: true,
+          },
+          {
+            name: 'AiSpeech',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+          {
+            name: 'AiResume',
+            layout: '/dfuns',
+            path: '/',
+            secondary: true,
+          },
+        ]
+      },
+      
+      {
         name: 'Living&Health',
         layout: '/dfuns',
         path: '/',
@@ -131,34 +160,7 @@ const routes: IRoute[] = [
           },
         ]
       },
-      {
-        name: 'AI Assistant',
-        layout: '/dfuns',
-        path: '/',
-        icon: <Icon as={IconRobot} width='20px' height='20px' color='inherit' />,
-        secondary: true,
-        collapse: true,
-        items: [
-          {
-            name: 'AiArtNFT',
-            layout: '/dfuns',
-            path: '/',
-            secondary: true,
-          },
-          {
-            name: 'AiSpeech',
-            layout: '/dfuns',
-            path: '/',
-            secondary: true,
-          },
-          {
-            name: 'AiResume',
-            layout: '/dfuns',
-            path: '/',
-            secondary: true,
-          },
-        ]
-      },
+
       {
         name: 'Web Tools',
         layout: '/dfuns',
