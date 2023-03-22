@@ -12,14 +12,16 @@ export const inputStyles = {
 			variants: {
 				main: (props: any) => ({
 					field: {
-						bg: mode('transparent', 'navy.800')(props),
+						bg: mode('transparent', 'navy.600')(props),
 						border: '1px solid',
 						color: mode('secondaryGray.900', 'white')(props),
 						borderColor: mode('secondaryGray.100', 'whiteAlpha.100')(props),
 						borderRadius: '16px',
 						fontSize: 'sm',
 						p: '20px',
-						_placeholder: { color: 'secondaryGray.400' }
+						_placeholder: { 
+							color: mode('secondaryGray.700', 'white')(props),
+						  }
 					}
 				}),
 				auth: (props: any) => ({

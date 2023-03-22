@@ -65,7 +65,7 @@ const routes: IRoute[] = [
             path: '/offerc',
             secondary: true,
           },
-          {
+/*           {
             name: 'Property',
             layout: '/dfuns',
             path: '/',
@@ -100,9 +100,38 @@ const routes: IRoute[] = [
             layout: '/dfuns',
             path: '/',
             secondary: true,
+          }, */
+        ]
+      },
+      {
+        name: 'AI Assistant',
+        layout: '/dfuns',
+        path: '/AiAvatar',
+        icon: <Icon as={IconRobot} width='20px' height='20px' color='inherit' />,
+        secondary: true,
+        collapse: true,
+        items: [
+          {
+            name: 'AiAvatar',
+            layout: '/dfuns',
+            path: '/AiAvatar',
+            secondary: true,
+          },
+          {
+            name: 'AiInterview',
+            layout: '/dfuns',
+            path: '/AiInterview',
+            secondary: true,
+          },
+          {
+            name: 'AiName',
+            layout: '/dfuns',
+            path: '/AiName',
+            secondary: true,
           },
         ]
       },
+      
       {
         name: 'Living&Health',
         layout: '/dfuns',
@@ -131,34 +160,7 @@ const routes: IRoute[] = [
           },
         ]
       },
-      {
-        name: 'AI Assistant',
-        layout: '/dfuns',
-        path: '/',
-        icon: <Icon as={IconRobot} width='20px' height='20px' color='inherit' />,
-        secondary: true,
-        collapse: true,
-        items: [
-          {
-            name: 'AiArtNFT',
-            layout: '/dfuns',
-            path: '/',
-            secondary: true,
-          },
-          {
-            name: 'AiSpeech',
-            layout: '/dfuns',
-            path: '/',
-            secondary: true,
-          },
-          {
-            name: 'AiResume',
-            layout: '/dfuns',
-            path: '/',
-            secondary: true,
-          },
-        ]
-      },
+
       {
         name: 'Web Tools',
         layout: '/dfuns',

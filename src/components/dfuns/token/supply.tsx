@@ -21,7 +21,7 @@ const TokenSupply = ({ mintAddress }) => {
 
     fetchMintInfo();
 
-    const interval = setInterval(fetchMintInfo, 1000);
+    const interval = setInterval(fetchMintInfo, 10000);
 
     return () => clearInterval(interval);
   }, [mintAddress]);
