@@ -7,6 +7,14 @@ import Link from 'components/link/Link';
 import banner from '/public/img/nfts/NftBanner1.png';
 
 export default function Banner() {
+  const handleClick = (e) => {
+    e.preventDefault()
+    window.open(
+      'https://youtu.be/KC9pMN0pToI',
+      'Video Player',
+      'width=800,height=600'
+    )
+  }
   // Chakra Color Mode
   return (
     <Flex
@@ -68,8 +76,8 @@ export default function Banner() {
         >
           Discover now
         </Button>
-        <Link href="https://youtu.be/KC9pMN0pToI">
-          <Text color="white" fontSize="sm" fontWeight="500">
+     <Link onClick={handleClick} href={''}>
+      <Text color="white" fontSize="sm" fontWeight="500">
             Watch video
           </Text>
         </Link>
