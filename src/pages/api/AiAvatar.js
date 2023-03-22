@@ -2,7 +2,8 @@ import axios from 'axios';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { prompt } = req.body;
+// added num_images to control output number of images
+    const { prompt, num_images } = req.body;
 
     const openaiApiKey = process.env.OPENAI_API_KEY;
     const openaiApiUrl = 'https://api.openai.com/v1/images/generations';

@@ -30,7 +30,7 @@ const Disconnected: FC = () => {
     setIsLoading(true);
     try {
       const avatarPrompt = `${prompt} avatar`;
-      const response = await axios.post('/api/AiAvatar', { prompt: avatarPrompt,num_images: 1 });
+      const response = await axios.post('/api/AiAvatar', { prompt: avatarPrompt, num_images: 1 });
       const imageData = response.data.data[0];
       setGeneratedImage(imageData.url);
     } catch (error) {
