@@ -74,20 +74,6 @@ const Connected: FC = () => {
     [wallet, connect, modalState]
   )
 
-    // add send token function
-    async function handleSend() {
-      try {
-        await sendToken();
-    
-        console.log(`Payment sucessful, now rediceting...`); 
-        // Token transfer was successful, redirect to the '/dfuns/cpfcalP' URL
-        redirect();
-    
-      } catch (error) {
-        console.error(error);
-      }
-    }  
-
   return (
   <Box
     className="container mx-auto px-4 py-10"
@@ -143,7 +129,7 @@ const Connected: FC = () => {
           onClick={handleClick}
           >
       <HStack>
-      <Button onClick={handleSend} bgColor="violet" as="a">TBD</Button>
+      <Button bgColor="violet" as="a">TBD</Button>
       </HStack>
     </Button>
     </VStack>
