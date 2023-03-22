@@ -162,15 +162,15 @@ export default function Marketplace() {
                 download="/dfuns/AiAvatar"
               />
               <NFT
-                name="PNQ2SVG"
-                author="By xxx"
+                name="AiInterview"
+                author="By GPT"
                 bidders={[
                   Avatar3,
                   Avatar4,
                 ]}
                 image={Nft5}
                 currentbid="999"
-                download="#"
+                download="/dfuns/AiInterview"
               />
               <NFT
                 name="AiResume"

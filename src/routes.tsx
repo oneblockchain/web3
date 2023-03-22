@@ -65,7 +65,7 @@ const routes: IRoute[] = [
             path: '/offerc',
             secondary: true,
           },
-          {
+/*           {
             name: 'Property',
             layout: '/dfuns',
             path: '/',
@@ -100,13 +100,13 @@ const routes: IRoute[] = [
             layout: '/dfuns',
             path: '/',
             secondary: true,
-          },
+          }, */
         ]
       },
       {
         name: 'AI Assistant',
         layout: '/dfuns',
-        path: '/',
+        path: '/AiAvatar',
         icon: <Icon as={IconRobot} width='20px' height='20px' color='inherit' />,
         secondary: true,
         collapse: true,
@@ -118,15 +118,15 @@ const routes: IRoute[] = [
             secondary: true,
           },
           {
-            name: 'AiSpeech',
+            name: 'AiInterview',
             layout: '/dfuns',
-            path: '/',
+            path: '/AiInterview',
             secondary: true,
           },
           {
-            name: 'AiResume',
+            name: 'AiName',
             layout: '/dfuns',
-            path: '/',
+            path: '/AiName',
             secondary: true,
           },
         ]
