@@ -1,9 +1,9 @@
 'use client'
 import { Box, Center, Spacer, Stack } from "@chakra-ui/react";
 import type { NextPage } from "next"
-import Disconnected from 'components/dfuns/AiInterview/Disconnected';
+import Disconnected from 'components/dfuns/AiName/Disconnected';
 import { useWallet } from "@solana/wallet-adapter-react";
-import Premium from "components/dfuns/AiInterview/Premium";
+import Premium from "components/dfuns/AiName/Premium";
 
 
  const Home: NextPage = () => {

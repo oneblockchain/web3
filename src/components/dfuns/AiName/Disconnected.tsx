@@ -1,5 +1,5 @@
 'use client'
-import { FC, MouseEventHandler, useCallback, useState } from "react"
+import { FC, MouseEventHandler, useCallback, useState, useEffect } from "react"
 import {
   Box,
   Button,
@@ -16,6 +16,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
+import TypingText from "components/dfuns/TypingText"
 
 import axios, { AxiosError } from 'axios';
 
@@ -34,7 +35,7 @@ const Disconnected: FC = () => {
       const response = await axios.post('/api/OpenAI', { prompt: fullPrompt, max_tokens: 150});
 //        console.log(response);
       const answerData = response.data.text;
-      setAnswer(answerData);
+      setAnswer(answerData)
       } catch (error) {
         const axiosError = error as AxiosError;
         const errorMessage = axiosError.response.data.error.message ?? 'Error generating answer';
@@ -99,8 +100,13 @@ const Disconnected: FC = () => {
 
       {answer && (
         <FormControl>
-          <FormLabel>Suggested names for your new born:</FormLabel>
-          <Textarea value={answer} readOnly />
+          <FormLabel>Suggested names for the new born:</FormLabel>
+{/*           <Textarea value={answer} readOnly /> */}
+        <Text>
+        {answer.split('\n').map((line, index) => (
+          <TypingText key={index} text={line} />
+        ))}
+      </Text>
         </FormControl>
       )}
 

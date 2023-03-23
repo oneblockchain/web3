@@ -12,11 +12,11 @@ import {
   FormControl, 
   FormLabel,
 } from "@chakra-ui/react"
-import { ArrowForwardIcon } from "@chakra-ui/icons"
 import axios, { AxiosError } from 'axios';
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
+import TypingText from "components/dfuns/TypingText"
 // send tokan and route to new page
 import { Connection, PublicKey, Transaction, clusterApiUrl } from "@solana/web3.js";
 import { TOKEN_PROGRAM_ID, createTransferInstruction, ASSOCIATED_TOKEN_PROGRAM_ID } from "@solana/spl-token";
@@ -45,13 +45,13 @@ const Connected: FC = () => {
   //send
   const payer = publicKey ? publicKey.toBase58() : null;
   console.log("PublicKey:", payer)
-  const tokenAmount = 1000000000;
+  const tokenAmount = 2000000000;
 
  //route to new premium page
   let router= useRouter()
 
   function redirect() {
-    router.push('/dfuns/AiInterviewP')
+    router.push('/dfuns/AiNameP')
   }
   // send token
   async function sendToken() {
@@ -105,7 +105,7 @@ const Connected: FC = () => {
   const handleOpenai= async () => {
     setIsLoading(true);
     try {
-      const fullPrompt = `Generate 9 interview questions for ${prompt} role.`;
+      const fullPrompt = `Generate 3 English names for ${prompt}, and explain why, also generate 3 Chinese names for ${prompt} and explain in Chinese`;
       const response = await axios.post('/api/OpenAI', { prompt: fullPrompt, max_tokens: 300});
 //        console.log(response);
       const answerData = response.data.text;
@@ -164,14 +164,14 @@ const Connected: FC = () => {
   >
     <VStack spacing={6}>
     <Heading whiteSpace="pre-wrap" textAlign="center" as="h1" size="2xl">
-      <Text> OpenAI Interview Questions</Text>
+      <Text> OpenAI English & Chinese Name for new borns</Text>
         {'\n'}
         <Text fontSize="xl"> Standard ver1.0</Text>  
       </Heading>
       <Input 
         variant="main"
         type="text"
-        placeholder="Enter your job role applied, ie, software engineer"
+        placeholder="Enter some hints, ie. brave girl in September"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
@@ -180,17 +180,21 @@ const Connected: FC = () => {
         onClick={handleOpenai}
         isLoading={isLoading}
       >
-        {isLoading ? 'Generating...' : 'Generate 9 questions and Mint Token'}
+        {isLoading ? 'Generating...' : 'Generate 3 ENG&CN Names and Mint Token'}
       </Button>
 
       {answer && (
-        <FormControl  id="interview-questions">
-          <FormLabel>Common Interview Questions:</FormLabel>
-          <Textarea value={answer} readOnly />
+        <FormControl>
+          <FormLabel>Suggested names for the new born: {prompt}</FormLabel>
+          <Text>
+            {answer.split('\n').map((line, index) => (
+              <TypingText key={index} text={line} />
+            ))}
+          </Text>
         </FormControl>
       )}
 
-      <Button onClick={handleSend} bgColor="violet" as="a">Pay 5 tokens to get all questions answered!</Button>
+      <Button onClick={handleSend} bgColor="violet" as="a">Pay 2 tokens to get greater names!</Button>
 
     </VStack>
   </Box>

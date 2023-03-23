@@ -45,7 +45,7 @@ const Connected: FC = () => {
   //send
   const payer = publicKey ? publicKey.toBase58() : null;
   console.log("PublicKey:", payer)
-  const tokenAmount = 1000000000;
+  const tokenAmount = 5000000000;
 
  //route to new premium page
   let router= useRouter()
@@ -184,7 +184,7 @@ const Connected: FC = () => {
       </Button>
 
       {answer && (
-        <FormControl  id="interview-questions">
+        <FormControl>
           <FormLabel>Common Interview Questions:</FormLabel>
           <Textarea value={answer} readOnly />
         </FormControl>

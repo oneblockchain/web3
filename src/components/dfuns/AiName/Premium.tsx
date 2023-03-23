@@ -12,10 +12,9 @@ import {
   FormControl, 
   FormLabel,
 } from "@chakra-ui/react"
-import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
-import MintToken from "components/dfuns/token/mint"
+import TypingText from "components/dfuns/TypingText"
 
 import axios, { AxiosError } from 'axios';
 
@@ -30,7 +29,7 @@ const Premium: FC = () => {
   const handleOpenai= async () => {
     setIsLoading(true);
     try {
-      const fullPrompt = `Generate 8 interview questions for ${prompt} role and answer them`;
+      const fullPrompt = `Generate 5 English names for ${prompt}, and explain why, also generate 5 Chinese names for ${prompt} and explain in Chinese`;
       const response = await axios.post('/api/OpenAI', { prompt: fullPrompt, max_tokens: 600});
 //        console.log(response);
       const answerData = response.data.text;
@@ -69,14 +68,14 @@ const Premium: FC = () => {
   >
     <VStack spacing={6}>
     <Heading whiteSpace="pre-wrap" textAlign="center" as="h1" size="2xl">
-      <Text> OpenAI Interview Questions</Text>
+      <Text>OpenAI English & Chinese Name for new borns</Text>
         {'\n'}
         <Text fontSize="xl"> Premium ver1.0</Text>  
       </Heading>
       <Input 
         variant="main"
         type="text"
-        placeholder="Enter your job role applied, ie, CTO"
+        placeholder="Enter some hints, ie. brave girl in September"
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
@@ -85,13 +84,17 @@ const Premium: FC = () => {
         onClick={handleOpenai}
         isLoading={isLoading}
       >
-        {isLoading ? 'Generating...' : 'Generate 8 questions and answers'}
+        {isLoading ? 'Generating...' : 'Generate 5 ENG&CN names'}
       </Button>
 
       {answer && (
-        <FormControl  id="interview-questions">
-          <FormLabel>Common Interview Questions:</FormLabel>
-          <Textarea value={answer} readOnly />
+        <FormControl>
+          <FormLabel>Suggested names for the new born: {prompt}</FormLabel>
+          <Text>
+            {answer.split('\n').map((line, index) => (
+              <TypingText key={index} text={line} />
+            ))}
+          </Text>
         </FormControl>
       )}
 
