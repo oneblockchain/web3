@@ -94,11 +94,11 @@ export default function Marketplace() {
                   color={textColorBrand}
                   fontWeight="500"
                   me={{ base: '34px', md: '44px' }}
-                  href="/admin/nfts#collectibles"
+                  href=""
                 >
                   Web Tool
                 </Link>
-                <Link color={textColorBrand} fontWeight="500" href="/admin/nfts#sports">
+                <Link color={textColorBrand} fontWeight="500" href="/admin/nfts#sme">
                   Small Business
                 </Link>
               </Flex>
@@ -154,8 +154,8 @@ export default function Marketplace() {
                 name="AiAvatar"
                 author="By GPT"
                 bidders={[
-                  Avatar1,
                   Avatar2,
+                  Avatar1,
                 ]}
                 image={Nft4}
                 currentbid="1111"
@@ -165,8 +165,8 @@ export default function Marketplace() {
                 name="AiInterview"
                 author="By GPT"
                 bidders={[
-                  Avatar3,
-                  Avatar4,
+                  Avatar2,
+                  Avatar1,
                 ]}
                 image={Nft5}
                 currentbid="999"
@@ -176,8 +176,8 @@ export default function Marketplace() {
                 name="AiName"
                 author="By GPT"
                 bidders={[
-                  Avatar3,
-                  Avatar4,
+                  Avatar2,
+                  Avatar1,
                 ]}
                 image={Nft6}
                 currentbid="888"

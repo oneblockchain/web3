@@ -12,12 +12,12 @@ import {
   FormControl, 
   FormLabel,
 } from "@chakra-ui/react"
-import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
 
 import axios, { AxiosError } from 'axios';
+import TypingText from "components/dfuns/TypingText"
 
 const Premium: FC = () => {
   const modalState = useWalletModal()
@@ -89,9 +89,13 @@ const Premium: FC = () => {
       </Button>
 
       {answer && (
-        <FormControl  id="interview-questions">
-          <FormLabel>Common Interview Questions:</FormLabel>
-          <Textarea value={answer} readOnly />
+        <FormControl>
+          <FormLabel>Common Interview Questions and Answers for {prompt} :</FormLabel>
+          <Text>
+          {answer.split('\n').map((line, index) => (
+            <TypingText key={index} text={line} />
+          ))}
+          </Text>
         </FormControl>
       )}
 

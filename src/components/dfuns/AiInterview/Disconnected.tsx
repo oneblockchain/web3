@@ -18,6 +18,7 @@ import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
 
 import axios, { AxiosError } from 'axios';
+import TypingText from "components/dfuns/TypingText"
 
 const Disconnected: FC = () => {
   const modalState = useWalletModal()
@@ -51,7 +52,7 @@ const Disconnected: FC = () => {
 
   };
 
-  const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
+  const handleWallet: MouseEventHandler<HTMLButtonElement> = useCallback(
     (event) => {
       if (event.defaultPrevented) {
         return
@@ -97,15 +98,19 @@ const Disconnected: FC = () => {
       </Button>
 
       {answer && (
-        <FormControl  id="interview-questions">
-          <FormLabel>Common Interview Questions:</FormLabel>
-          <Textarea value={answer} readOnly />
+        <FormControl>
+          <FormLabel>Common Interview Questions for {prompt} :</FormLabel>
+          <Text>
+          {answer.split('\n').map((line, index) => (
+            <TypingText key={index} text={line} />
+          ))}
+          </Text>
         </FormControl>
       )}
 
       <Button
           bgColor="violet"
-          onClick={handleClick}
+          onClick={handleWallet}
           >
       <HStack>
         <Text>Link your wallet to see more</Text>

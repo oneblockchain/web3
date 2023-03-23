@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 import axios, { AxiosError } from 'axios';
+import TypingText from "components/dfuns/TypingText"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
@@ -185,8 +186,12 @@ const Connected: FC = () => {
 
       {answer && (
         <FormControl>
-          <FormLabel>Common Interview Questions:</FormLabel>
-          <Textarea value={answer} readOnly />
+          <FormLabel>Common Interview Questions for {prompt} :</FormLabel>
+          <Text>
+          {answer.split('\n').map((line, index) => (
+            <TypingText key={index} text={line} />
+          ))}
+          </Text>
         </FormControl>
       )}
 
