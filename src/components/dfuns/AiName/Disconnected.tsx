@@ -1,5 +1,5 @@
 'use client'
-import { FC, MouseEventHandler, useCallback, useState } from "react"
+import { FC, MouseEventHandler, useCallback, useState, useEffect } from "react"
 import {
   Box,
   Button,
@@ -16,9 +16,9 @@ import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import { useWallet } from "@solana/wallet-adapter-react"
 import MintToken from "components/dfuns/token/mint"
+import TypingText from "components/dfuns/TypingText"
 
 import axios, { AxiosError } from 'axios';
-import TypingText from "components/dfuns/TypingText"
 
 const Disconnected: FC = () => {
   const modalState = useWalletModal()
@@ -31,11 +31,11 @@ const Disconnected: FC = () => {
   const handleOpenai= async () => {
     setIsLoading(true);
     try {
-      const fullPrompt = `Generate 5 interview questions for ${prompt} role`;
+      const fullPrompt = `Generate 3 English names for ${prompt}, and explain why.`;
       const response = await axios.post('/api/OpenAI', { prompt: fullPrompt, max_tokens: 150});
 //        console.log(response);
       const answerData = response.data.text;
-      setAnswer(answerData);
+      setAnswer(answerData)
       } catch (error) {
         const axiosError = error as AxiosError;
         const errorMessage = axiosError.response.data.error.message ?? 'Error generating answer';
@@ -43,12 +43,12 @@ const Disconnected: FC = () => {
       }
     setIsLoading(false);
 
-   // add mint token function
-   try {
-    await MintToken();
-  } catch (error) {
-    console.error(error);
-  } 
+    // add mint token function
+    try {
+     await MintToken();
+      } catch (error) {
+      console.error(error);
+      } 
 
   };
 
@@ -78,33 +78,35 @@ const Disconnected: FC = () => {
   >
     <VStack spacing={6}>
     <Heading whiteSpace="pre-wrap" textAlign="center" as="h1" size="2xl">
-      <Text> OpenAI Interview Questions</Text>
+      <Text> OpenAI English & Chinese Name for new borns</Text>
         {'\n'}
         <Text fontSize="xl"> Basic ver1.0</Text>  
       </Heading>
       <Input 
+        isRequired
         variant="main"
         type="text"
-        placeholder="Enter your job role applied, ie, software engineer"
+        placeholder="Enter some hints, ie. boy in September" 
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
       />
       <Button
         colorScheme="blue"
-        onClick={handleOpenai}
+        onClick={handleOpenai} 
         isLoading={isLoading}
       >
-        {isLoading ? 'Generating...' : 'Generate 5 questions and Mint Token'}
+        {isLoading ? 'Generating...' : 'Generate 3 English names and Mint Token'}
       </Button>
 
       {answer && (
         <FormControl>
-          <FormLabel>Common Interview Questions for {prompt} :</FormLabel>
-          <Text>
-          {answer.split('\n').map((line, index) => (
-            <TypingText key={index} text={line} />
-          ))}
-          </Text>
+          <FormLabel>Suggested names for the new born:</FormLabel>
+{/*           <Textarea value={answer} readOnly /> */}
+        <Text>
+        {answer.split('\n').map((line, index) => (
+          <TypingText key={index} text={line} />
+        ))}
+      </Text>
         </FormControl>
       )}
 
@@ -113,7 +115,7 @@ const Disconnected: FC = () => {
           onClick={handleWallet}
           >
       <HStack>
-        <Text>Link your wallet to see more</Text>
+        <Text>Link your wallet to see Chinese names</Text>
         <ArrowForwardIcon />
       </HStack>
     </Button>
