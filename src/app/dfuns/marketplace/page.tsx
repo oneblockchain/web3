@@ -173,15 +173,15 @@ export default function Marketplace() {
                 download="/dfuns/AiInterview"
               />
               <NFT
-                name="AiResume"
-                author="By yyy"
+                name="AiName"
+                author="By GPT"
                 bidders={[
                   Avatar3,
                   Avatar4,
                 ]}
                 image={Nft6}
                 currentbid="888"
-                download="#"
+                download="/dfuns/AiName"
               />
             </SimpleGrid>
           </Flex>
