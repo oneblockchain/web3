@@ -11,6 +11,8 @@ Each function resolves simple but essential problem in one's life, such as compa
 
 Each dFun offers 3 tier of serivce: basic, standard and premium. 
 ![Offerc](readme/Offerc_standard.png)
+
+We also onboarded Openai to embrace new era of AI on Web3!
 ![AiInterview](readme/AiInterview_P.png)
 
 ## Quick Start
